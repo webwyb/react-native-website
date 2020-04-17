@@ -179,7 +179,7 @@ To use your custom web view, you'll need to create a class for it. Your class mu
 
 To get your native component, you must use `requireNativeComponent`: the same as for regular custom components. However, you must pass in an extra third argument, `WebView.extraNativeComponentConfig`. This third argument contains prop types that are only required for native code.
 
-```javascript
+```jsx
 import React, {Component, PropTypes} from 'react';
 import {WebView, requireNativeComponent} from 'react-native';
 
@@ -206,7 +206,7 @@ For events, the event handler must always be set to a function. This means it is
 
 If you are unsure how something should be implemented from the JS side, look at [WebView.android.js](https://github.com/facebook/react-native/blob/master/Libraries/Components/WebView/WebView.android.js) in the React Native source.
 
-```javascript
+```jsx
 export default class CustomWebView extends Component {
   static propTypes = {
     ...WebView.propTypes,
@@ -240,11 +240,11 @@ export default class CustomWebView extends Component {
 }
 ```
 
-Just like for regular native components, you must provide all your prop types in the component to have them forwarded on to the native component. However, if you have some prop types that are only used internally in component, you can add them to the `nativeOnly` property of the third argument previously mentioned. For event handlers, you have to use the value `true` instead of a regular prop type.
+Similar to regular native components, you must provide all your prop types in the component to have them forwarded on to the native component. However, if you have some prop types that are only used internally in component, you can add them to the `nativeOnly` property of the third argument previously mentioned. For event handlers, you have to use the value `true` instead of a regular prop type.
 
 For example, if you wanted to add an internal event handler called `onScrollToBottom`, you would use,
 
-```javascript
+```jsx
 const RCTCustomWebView = requireNativeComponent(
   'RCTCustomWebView',
   CustomWebView,

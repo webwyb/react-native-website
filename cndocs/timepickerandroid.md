@@ -1,7 +1,9 @@
 ---
 id: timepickerandroid
-title: TimePickerAndroid
+title: 🚧 TimePickerAndroid
 ---
+
+> **Deprecated.** Use [@react-native-community/datetimepicker](https://github.com/react-native-community/react-native-datetimepicker) instead.
 
 本组件会打开一个标准的 Android 时间选择器的对话框。
 
@@ -22,12 +24,6 @@ try {
 }
 ```
 
-### 查看方法
-
-- [`open`](timepickerandroid.md#open)
-- [`timeSetAction`](timepickerandroid.md#timesetaction)
-- [`dismissedAction`](timepickerandroid.md#dismissedaction)
-
 ---
 
 # 文档
@@ -36,7 +32,7 @@ try {
 
 ### `open()`
 
-```javascript
+```jsx
 static open(options)
 ```
 
@@ -58,7 +54,7 @@ static open(options)
 
 ### `timeSetAction()`
 
-```javascript
+```jsx
 static timeSetAction()
 ```
 
@@ -68,7 +64,7 @@ static timeSetAction()
 
 ### `dismissedAction()`
 
-```javascript
+```jsx
 static dismissedAction()
 ```
 

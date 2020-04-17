@@ -19,7 +19,7 @@ A performant interface for rendering sectioned lists, supporting the most handy 
 
 If you don't need section support and want a simpler interface, use [`<FlatList>`](flatlist.md).
 
-Simple Examples:
+Examples:
 
     <SectionList
       renderItem={({item}) => <ListItem title={item} />}
@@ -76,7 +76,7 @@ This is a convenience wrapper around [`<VirtualizedList>`](virtualizedlist.md), 
 
 ### `scrollToLocation()`
 
-```javascript
+```jsx
 scrollToLocation((params: object));
 ```
 
@@ -88,7 +88,7 @@ Note: cannot scroll to locations outside the render window without specifying th
 
 ### `recordInteraction()`
 
-```javascript
+```jsx
 recordInteraction();
 ```
 
@@ -98,7 +98,7 @@ Tells the list an interaction has occured, which should trigger viewability calc
 
 ### `flashScrollIndicators()`
 
-```javascript
+```jsx
 flashScrollIndicators();
 ```
 

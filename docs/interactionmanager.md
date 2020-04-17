@@ -7,7 +7,7 @@ InteractionManager allows long-running work to be scheduled after any interactio
 
 Applications can schedule tasks to run after interactions with the following:
 
-```javascript
+```jsx
 InteractionManager.runAfterInteractions(() => {
   // ...long-running synchronous task...
 });
@@ -23,7 +23,7 @@ The touch handling system considers one or more active touches to be an 'interac
 
 InteractionManager also allows applications to register animations by creating an interaction 'handle' on animation start, and clearing it upon completion:
 
-```javascript
+```jsx
 var handle = InteractionManager.createInteractionHandle();
 // run animation... (`runAfterInteractions` tasks are queued)
 // later, on animation completion:
@@ -35,18 +35,6 @@ InteractionManager.clearInteractionHandle(handle);
 
 By default, queued tasks are executed together in a loop in one `setImmediate` batch. If `setDeadline` is called with a positive number, then tasks will only be executed until the deadline (in terms of js event loop run time) approaches, at which point execution will yield via setTimeout, allowing events such as touches to start interactions and block queued tasks from executing, making apps more responsive.
 
-### Methods
-
-- [`runAfterInteractions`](interactionmanager.md#runafterinteractions)
-- [`createInteractionHandle`](interactionmanager.md#createinteractionhandle)
-- [`clearInteractionHandle`](interactionmanager.md#clearinteractionhandle)
-- [`setDeadline`](interactionmanager.md#setdeadline)
-
-### Properties
-
-- [`Events`](interactionmanager.md#events)
-- [`addListener`](interactionmanager.md#addlistener)
-
 ---
 
 # Reference
@@ -55,7 +43,7 @@ By default, queued tasks are executed together in a loop in one `setImmediate` b
 
 ### `runAfterInteractions()`
 
-```javascript
+```jsx
 static runAfterInteractions(task)
 ```
 
@@ -65,7 +53,7 @@ Schedule a function to run after all interactions have completed. Returns a canc
 
 ### `createInteractionHandle()`
 
-```javascript
+```jsx
 static createInteractionHandle()
 ```
 
@@ -75,7 +63,7 @@ Notify manager that an interaction has started.
 
 ### `clearInteractionHandle()`
 
-```javascript
+```jsx
 static clearInteractionHandle(handle)
 ```
 
@@ -85,7 +73,7 @@ Notify manager that an interaction has completed.
 
 ### `setDeadline()`
 
-```javascript
+```jsx
 static setDeadline(deadline)
 ```
 

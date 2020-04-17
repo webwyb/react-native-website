@@ -4,7 +4,7 @@ title: Vibration
 original_id: vibration
 ---
 
-The Vibration API is exposed at `Vibration.vibrate()`. The vibration is asynchronous so this method will return immediately.
+The Vibration API is exposed at `Vibration.vibrate()`. The vibration is synchronous so this method will return immediately.
 
 There will be no effect on devices that do not support Vibration, eg. the simulator.
 
@@ -25,7 +25,7 @@ Vibration patterns are currently unsupported.
 
 ### `vibrate()`
 
-```javascript
+```jsx
 static vibrate(pattern, repeat)
 ```
 
@@ -33,7 +33,7 @@ static vibrate(pattern, repeat)
 
 ### `cancel()`
 
-```javascript
+```jsx
 static cancel()
 ```
 

@@ -3,76 +3,14 @@ id: integration-with-existing-apps
 title: 集成到现有原生应用
 ---
 
-<style>
-  .toggler li {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    padding: 10px;
-    margin: 0px 2px 0px 2px;
-    border: 1px solid #05A5D1;
-    border-bottom-color: transparent;
-    border-radius: 3px 3px 0px 0px;
-    color: #05A5D1;
-    background-color: transparent;
-    font-size: 0.99em;
-    cursor: pointer;
-  }
-  .toggler li:first-child {
-    margin-left: 0;
-  }
-  .toggler li:last-child {
-    margin-right: 0;
-  }
-  .toggler ul {
-    width: 100%;
-    display: inline-block;
-    list-style-type: none;
-    margin: 0;
-    border-bottom: 1px solid #05A5D1;
-    cursor: default;
-  }
-  @media screen and (max-width: 960px) {
-    .toggler li,
-    .toggler li:first-child,
-    .toggler li:last-child {
-      display: block;
-      border-bottom-color: #05A5D1;
-      border-radius: 3px;
-      margin: 2px 0px 2px 0px;
-    }
-    .toggler ul {
-      border-bottom: 0;
-    }
-  }
-  .toggler a {
-    display: inline-block;
-    padding: 10px 5px;
-    margin: 2px;
-    border: 1px solid #05A5D1;
-    border-radius: 3px;
-    text-decoration: none !important;
-  }
-  .display-language-objc .toggler .button-objc,
-  .display-language-swift .toggler .button-swift,
-  .display-language-android .toggler .button-android {
-    background-color: #05A5D1;
-    color: white;
-  }
-  block { display: none; }
-  .display-language-objc .objc,
-  .display-language-swift .swift,
-  .display-language-android .android {
-    display: block;
-  }
-</style>
-
 如果你正准备从头开始制作一个新的应用，那么 React Native 会是个非常好的选择。但如果你只想给现有的原生应用中添加一两个视图或是业务流程，React Native 也同样不在话下。只需简单几步，你就可以给原有应用加上新的基于 React Native 的特性、画面和视图等。
 
 具体的步骤根据你所开发的目标平台不同而不同。
 
+> 译注：本文档可能更新不够及时，不能保证适用于最新版本，欢迎了解的朋友使用右上方的链接帮忙改进此文档。一个实用的建议是可以使用`react-native init NewProject`创建一个最新版本的纯RN项目，去参考其Podfile或是gradle等的配置，以它们为准。
+
 <div class="toggler">
-  <ul role="tablist" >
+  <ul role="tablist" id="toggle-language">
     <li id="objc" class="button-objc" aria-selected="false" role="tab" tabindex="0" aria-controls="objctab" onclick="displayTab('language', 'objc')">
       iOS (Objective-C)
     </li>
@@ -222,7 +160,7 @@ React Native 框架整体是作为 node 模块安装到项目中的。下一步�
 $ pod init
 ```
 
-`Podfile`会创建在执行命令的目录中。你需要调整其内容以满足你的集成需求。调整后的`Podfile`的内容看起来类似下面这样：
+`Podfile`会创建在执行命令的目录中。你需要调整其内容以满足你的集成需求。调整后的`Podfile`的内容看起来类似下面这样（也可以用`react-native init 项目名`命令创建一个纯RN项目，然后去参考其ios目录中的Podfile文件）：
 
 <block class="objc" />
 
@@ -232,20 +170,33 @@ target 'NumberTileGame' do
 
   # 'node_modules'目录一般位于根目录中
   # 但是如果你的结构不同，那你就要根据实际路径修改下面的`:path`
-  pod 'React', :path => '../node_modules/react-native', :subspecs => [
-    'Core',
-    'CxxBridge', # 如果RN版本 >= 0.47则加入此行
-    'DevSupport', # 如果RN版本 >= 0.43，则需要加入此行才能开启开发者菜单
-    'RCTText',
-    'RCTNetwork',
-    'RCTWebSocket', # 调试功能需要此模块
-    'RCTAnimation', # FlatList和原生动画功能需要此模块
-    # 在这里继续添加你所需要的其他RN模块
-  ]
-  # 如果你的RN版本 >= 0.42.0，则加入下面这行
-  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
+  pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
+  pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
+  pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
+  pod 'React', :path => '../node_modules/react-native/'
+  pod 'React-Core', :path => '../node_modules/react-native/'
+  pod 'React-CoreModules', :path => '../node_modules/react-native/React/CoreModules'
+  pod 'React-Core/DevSupport', :path => '../node_modules/react-native/'
+  pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
+  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
+  pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
+  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
+  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
+  pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+  pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
+  pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
 
-  # 如果RN版本 >= 0.45则加入下面三个第三方编译依赖
+  pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
+  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
+  pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
+  pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
+  pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
+  pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
+  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
@@ -269,18 +220,17 @@ target 'swift-2048' do
   # 但是如果你的结构不同，那你就要根据实际路径修改下面的`:path`
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'Core',
-    'CxxBridge', # 如果RN版本 >= 0.47则加入此行
-    'DevSupport', # 如果RN版本 >= 0.43，则需要加入此行才能开启开发者菜单
+    'CxxBridge', # Include this for RN >= 0.47
+    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
     'RCTText',
     'RCTNetwork',
-    'RCTWebSocket', # 调试功能需要此模块
-    'RCTAnimation', # FlatList和原生动画功能需要此模块
-    # 在这里继续添加你所需要的其他RN模块
+    'RCTWebSocket', # needed for debugging
+    # Add any other subspecs you want to use in your project
   ]
-  # 如果你的RN版本 >= 0.42.0，则加入下面这行
-  pod "yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+  # Explicitly include Yoga if you are using RN >= 0.42.0
+  pod "Yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
 
-  # 如果RN版本 >= 0.45则加入下面三个第三方编译依赖
+  # Third party deps podspec link
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
@@ -335,13 +285,13 @@ Pod installation complete! There are 3 dependencies from the Podfile and 1 total
 
 在`index.js`中添加你自己的组件。这里我们只是简单的添加一个`<Text>`组件，然后用一个带有样式的`<View>`组件把它包起来。
 
-```javascript
+```jsx
 import React from 'react';
 import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
 class RNHighScores extends React.Component {
   render() {
-    var contents = this.props['scores'].map((score) => (
+    const contents = this.props['scores'].map((score) => (
       <Text key={score.name}>
         {score.name}:{score.value}
         {'\n'}
@@ -445,7 +395,7 @@ We will, for debugging purposes, log that the event handler was invoked. Then, w
 
 首先`import`导入`React`库。
 
-```javascript
+```jsx
 import React
 ```
 
@@ -669,7 +619,7 @@ Now we will actually modify the native Android application to integrate React Na
 
 在`index.js`中添加你自己的组件。这里我们只是简单的添加一个`<Text>`组件，然后用一个带有样式的`<View>`组件把它包起来。
 
-```javascript
+```jsx
 import React from 'react';
 import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
@@ -682,7 +632,7 @@ class HelloWorld extends React.Component {
     );
   }
 }
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -889,124 +839,3 @@ $ react-native bundle --platform android --dev false --entry-file index.js --bun
 然后就可以开发啦~可是我完全不会 React Native 怎么办？
 
 我们建议你先通读本站的所有文档，看看博客，看看论坛。如果觉得知识太零散，不够系统，那么你也可以考虑下购买我们的[入门课程](https://ke.qq.com/course/197101)（链接里有目录，目录里有一些免费试听内容）。
-
-<script>
-  function displayTab(type, value) {
-    var container = document.getElementsByTagName('block')[0].parentNode;
-    container.className = 'display-' + type + '-' + value + ' ' +
-      container.className.replace(RegExp('display-' + type + '-[a-z]+ ?'), '');
-  }
-  function convertBlocks() {
-    // Convert <div>...<span><block /></span>...</div>
-    // Into <div>...<block />...</div>
-    var blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      var span = blocks[i].parentNode;
-      var container = span.parentNode;
-      container.insertBefore(block, span);
-      container.removeChild(span);
-    }
-    // Convert <div>...<block />content<block />...</div>
-    // Into <div>...<block>content</block><block />...</div>
-    blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      while (
-        block.nextSibling &&
-        block.nextSibling.tagName !== 'BLOCK'
-      ) {
-        block.appendChild(block.nextSibling);
-      }
-    }
-  }
-  function guessPlatformAndOS() {
-    if (!document.querySelector('block')) {
-      return;
-    }
-    // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
-    // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
-    var foundHash = false;
-    if (
-      window.location.hash !== '' &&
-      window.location.hash !== 'content'
-    ) {
-      // content is default
-      var hashLinks = document.querySelectorAll(
-        'a.hash-link'
-      );
-      for (
-        var i = 0;
-        i < hashLinks.length && !foundHash;
-        ++i
-      ) {
-        if (hashLinks[i].hash === window.location.hash) {
-          var parent = hashLinks[i].parentElement;
-          while (parent) {
-            if (parent.tagName === 'BLOCK') {
-              // Could be more than one target os and dev platform, but just choose some sort of order
-              // of priority here.
-              // Dev OS
-              if (parent.className.indexOf('mac') > -1) {
-                displayTab('os', 'mac');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('linux') > -1
-              ) {
-                displayTab('os', 'linux');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('windows') > -1
-              ) {
-                displayTab('os', 'windows');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Target Platform
-              if (parent.className.indexOf('ios') > -1) {
-                displayTab('platform', 'ios');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('android') > -1
-              ) {
-                displayTab('platform', 'android');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Guide
-              if (parent.className.indexOf('native') > -1) {
-                displayTab('guide', 'native');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('quickstart') > -1
-              ) {
-                displayTab('guide', 'quickstart');
-                foundHash = true;
-              } else {
-                break;
-              }
-              break;
-            }
-            parent = parent.parentElement;
-          }
-        }
-      }
-    }
-    // Do the default if there is no matching hash
-    if (!foundHash) {
-      var isMac = navigator.platform === 'MacIntel';
-      var isWindows = navigator.platform === 'Win32';
-      displayTab('platform', isMac ? 'ios' : 'android');
-      displayTab(
-        'os',
-        isMac ? 'mac' : isWindows ? 'windows' : 'linux'
-      );
-      displayTab('guide', 'quickstart');
-      displayTab('language', 'objc');
-    }
-  }
-  convertBlocks();
-  guessPlatformAndOS();
-</script>

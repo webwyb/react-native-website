@@ -1,7 +1,9 @@
 ---
 id: pushnotificationios
-title: PushNotificationIOS
+title: 🚧 PushNotificationIOS
 ---
+
+> **Deprecated.** Use [@react-native-community/push-notification-ios](https://github.com/react-native-community/react-native-push-notification-ios) instead.
 
 <div class="banner-crna-ejected">
   <h3>Projects with Native Code Only</h3>
@@ -18,10 +20,16 @@ title: PushNotificationIOS
 
 要使用推送通知功能，首先[在苹果后台配置推送通知服务](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)并且准备好服务端的系统。
 
-首先请[手动链接](linking-libraries-ios.md)PushNotificationIOS的库（以下操作如果不熟悉，请自行补习Xcode的使用教程）：  
+Add the PushNotificationIOS library to your Podfile: ./ios/Podfile
 
-- 将`node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj`文件拖到Xcode界面中
-- 在Xcode的`Link Binary With Libraries`中添加`libRCTPushNotification.a`
+```ruby
+  target 'myAwesomeApp' do
+    # Pods for myAwesomeApp
+    pod 'React-RCTPushNotification', :path => '../node_modules/react-native/Libraries/PushNotificationIOS'
+  end
+```
+
+译注: 0.60版本之前的步骤不同，请查看老版本文档。
 
 然后你需要在AppDelegate中启用推送通知的支持以及注册相应的事件。
 
@@ -90,34 +98,6 @@ And then in your AppDelegate implementation add the following:
 
 Then enable Background Modes/Remote notifications to be able to use remote notifications properly. The easiest way to do this is via the project settings. Navigate to Targets -> Your App -> Capabilities -> Background Modes and check Remote notifications. This will automatically enable the required settings.
 
-### 查看方法
-
-* [`presentLocalNotification`](pushnotificationios.md#presentlocalnotification)
-* [`scheduleLocalNotification`](pushnotificationios.md#schedulelocalnotification)
-* [`cancelAllLocalNotifications`](pushnotificationios.md#cancelalllocalnotifications)
-* [`removeAllDeliveredNotifications`](pushnotificationios.md#removealldeliverednotifications)
-* [`getDeliveredNotifications`](pushnotificationios.md#getdeliverednotifications)
-* [`removeDeliveredNotifications`](pushnotificationios.md#removedeliverednotifications)
-* [`setApplicationIconBadgeNumber`](pushnotificationios.md#setapplicationiconbadgenumber)
-* [`getApplicationIconBadgeNumber`](pushnotificationios.md#getapplicationiconbadgenumber)
-* [`cancelLocalNotifications`](pushnotificationios.md#cancellocalnotifications)
-* [`getScheduledLocalNotifications`](pushnotificationios.md#getscheduledlocalnotifications)
-* [`addEventListener`](pushnotificationios.md#addeventlistener)
-* [`removeEventListener`](pushnotificationios.md#removeeventlistener)
-* [`requestPermissions`](pushnotificationios.md#requestpermissions)
-* [`abandonPermissions`](pushnotificationios.md#abandonpermissions)
-* [`checkPermissions`](pushnotificationios.md#checkpermissions)
-* [`getInitialNotification`](pushnotificationios.md#getinitialnotification)
-* [`constructor`](pushnotificationios.md#constructor)
-* [`finish`](pushnotificationios.md#finish)
-* [`getMessage`](pushnotificationios.md#getmessage)
-* [`getSound`](pushnotificationios.md#getsound)
-* [`getCategory`](pushnotificationios.md#getcategory)
-* [`getAlert`](pushnotificationios.md#getalert)
-* [`getContentAvailable`](pushnotificationios.md#getcontentavailable)
-* [`getBadgeCount`](pushnotificationios.md#getbadgecount)
-* [`getData`](pushnotificationios.md#getdata)
-
 ---
 
 # 文档
@@ -126,7 +106,7 @@ Then enable Background Modes/Remote notifications to be able to use remote notif
 
 ### `presentLocalNotification()`
 
-```javascript
+```jsx
 PushNotificationIOS.presentLocalNotification(details);
 ```
 
@@ -152,7 +132,7 @@ details is an object containing:
 
 ### `scheduleLocalNotification()`
 
-```javascript
+```jsx
 PushNotificationIOS.scheduleLocalNotification(details);
 ```
 
@@ -181,7 +161,7 @@ details is an object containing:
 
 ### `cancelAllLocalNotifications()`
 
-```javascript
+```jsx
 PushNotificationIOS.cancelAllLocalNotifications();
 ```
 
@@ -191,7 +171,7 @@ Cancels all scheduled localNotifications
 
 ### `removeAllDeliveredNotifications()`
 
-```javascript
+```jsx
 PushNotificationIOS.removeAllDeliveredNotifications();
 ```
 
@@ -201,7 +181,7 @@ Remove all delivered notifications from Notification Center
 
 ### `getDeliveredNotifications()`
 
-```javascript
+```jsx
 PushNotificationIOS.getDeliveredNotifications(callback);
 ```
 
@@ -226,7 +206,7 @@ A delivered notification is an object containing:
 
 ### `removeDeliveredNotifications()`
 
-```javascript
+```jsx
 PushNotificationIOS.removeDeliveredNotifications(identifiers);
 ```
 
@@ -242,7 +222,7 @@ Removes the specified notifications from Notification Center
 
 ### `setApplicationIconBadgeNumber()`
 
-```javascript
+```jsx
 PushNotificationIOS.setApplicationIconBadgeNumber(number);
 ```
 
@@ -258,7 +238,7 @@ Sets the badge number for the app icon on the home screen
 
 ### `getApplicationIconBadgeNumber()`
 
-```javascript
+```jsx
 PushNotificationIOS.getApplicationIconBadgeNumber(callback);
 ```
 
@@ -274,7 +254,7 @@ Gets the current badge number for the app icon on the home screen
 
 ### `cancelLocalNotifications()`
 
-```javascript
+```jsx
 PushNotificationIOS.cancelLocalNotifications(userInfo);
 ```
 
@@ -292,7 +272,7 @@ Optionally restricts the set of canceled notifications to those notifications wh
 
 ### `getScheduledLocalNotifications()`
 
-```javascript
+```jsx
 PushNotificationIOS.getScheduledLocalNotifications(callback);
 ```
 
@@ -308,7 +288,7 @@ Gets the local notifications that are currently scheduled.
 
 ### `addEventListener()`
 
-```javascript
+```jsx
 PushNotificationIOS.addEventListener(type, handler);
 ```
 
@@ -332,7 +312,7 @@ Valid events are:
 
 ### `removeEventListener()`
 
-```javascript
+```jsx
 PushNotificationIOS.removeEventListener(type, handler);
 ```
 
@@ -349,7 +329,7 @@ Removes the event listener. Do this in `componentWillUnmount` to prevent memory 
 
 ### `requestPermissions()`
 
-```javascript
+```jsx
 PushNotificationIOS.requestPermissions([permissions]);
 ```
 
@@ -373,7 +353,7 @@ This method returns a promise that will resolve when the user accepts, rejects, 
 
 ### `abandonPermissions()`
 
-```javascript
+```jsx
 PushNotificationIOS.abandonPermissions();
 ```
 
@@ -385,7 +365,7 @@ You should call this method in rare circumstances only, such as when a new versi
 
 ### `checkPermissions()`
 
-```javascript
+```jsx
 PushNotificationIOS.checkPermissions(callback);
 ```
 
@@ -407,7 +387,7 @@ See what push permissions are currently enabled.
 
 ### `getInitialNotification()`
 
-```javascript
+```jsx
 PushNotificationIOS.getInitialNotification();
 ```
 
@@ -417,7 +397,7 @@ This method returns a promise. If the app was launched by a push notification, t
 
 ### `constructor()`
 
-```javascript
+```jsx
 constructor(nativeNotif);
 ```
 
@@ -427,11 +407,11 @@ You will never need to instantiate `PushNotificationIOS` yourself. Listening to 
 
 ### `finish()`
 
-```javascript
+```jsx
 finish(fetchResult);
 ```
 
-This method is available for remote notifications that have been received via: `application:didReceiveRemoteNotification:fetchCompletionHandler:` https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/application:didReceiveRemoteNotification:fetchCompletionHandler:
+This method is available for remote notifications that have been received via: `application:didReceiveRemoteNotification:fetchCompletionHandler:` https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application?language=objc
 
 Call this to execute when the remote notification handling is complete. When calling this block, pass in the fetch result value that best describes the results of your operation. You _must_ call this handler and should do so as soon as possible. For a list of possible values, see `PushNotificationIOS.FetchResult`.
 
@@ -441,7 +421,7 @@ If you do not call this method your background remote notifications could be thr
 
 ### `getMessage()`
 
-```javascript
+```jsx
 getMessage();
 ```
 
@@ -451,7 +431,7 @@ An alias for `getAlert` to get the notification's main message string
 
 ### `getSound()`
 
-```javascript
+```jsx
 getSound();
 ```
 
@@ -461,7 +441,7 @@ Gets the sound string from the `aps` object
 
 ### `getCategory()`
 
-```javascript
+```jsx
 getCategory();
 ```
 
@@ -471,7 +451,7 @@ Gets the category string from the `aps` object
 
 ### `getAlert()`
 
-```javascript
+```jsx
 getAlert();
 ```
 
@@ -481,7 +461,7 @@ Gets the notification's main message from the `aps` object
 
 ### `getContentAvailable()`
 
-```javascript
+```jsx
 getContentAvailable();
 ```
 
@@ -491,7 +471,7 @@ Gets the content-available number from the `aps` object
 
 ### `getBadgeCount()`
 
-```javascript
+```jsx
 getBadgeCount();
 ```
 
@@ -501,8 +481,18 @@ Gets the badge count number from the `aps` object
 
 ### `getData()`
 
-```javascript
+```jsx
 getData();
 ```
 
 Gets the data object on the notif
+
+---
+
+### `getThreadID()`
+
+```jsx
+getThreadID();
+```
+
+Gets the thread ID on the notification

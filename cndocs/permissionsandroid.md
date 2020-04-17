@@ -22,7 +22,7 @@ title: PermissionsAndroid
 
 ### 示例
 
-```javascript
+```jsx
 import {PermissionsAndroid} from 'react-native';
 
 async function requestCameraPermission() {
@@ -87,13 +87,6 @@ async function requestCameraPermission() {
 * `DENIED`: 'denied'， 表示用户已拒绝
 * `NEVER_ASK_AGAIN`: 'never_ask_again'，表示用户已拒绝，且不愿被再次询问。
 
-### 查看方法
-
-* [`constructor`](permissionsandroid.md#constructor)
-* [`check`](permissionsandroid.md#check)
-* [`request`](permissionsandroid.md#request)
-* [`requestMultiple`](permissionsandroid.md#requestmultiple)
-
 ---
 
 # 文档
@@ -102,7 +95,7 @@ async function requestCameraPermission() {
 
 ### `constructor()`
 
-```javascript
+```jsx
 constructor();
 ```
 
@@ -110,7 +103,7 @@ constructor();
 
 ### `check()`
 
-```javascript
+```jsx
 check(permission);
 ```
 
@@ -126,7 +119,7 @@ check(permission);
 
 ### `request()`
 
-```javascript
+```jsx
 request(permission, [rationale]);
 ```
 
@@ -155,7 +148,7 @@ request(permission, [rationale]);
 
 ### `requestMultiple()`
 
-```javascript
+```jsx
 requestMultiple(permissions);
 ```
 

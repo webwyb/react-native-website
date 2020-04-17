@@ -119,6 +119,8 @@ The default background color of the navigation bar
 
 ### `interactivePopGestureEnabled`
 
+<!-- alex ignore retext-equality -->
+
 A Boolean value that indicates whether the interactive pop gesture is enabled. Useful for enabling/disabling the back swipe navigation gesture. If this prop is not provided, the default behavior is for the back swipe gesture to be enabled when the navigation bar is shown and disabled when the navigation bar is hidden. Once you've provided the interactivePopGestureEnabled prop, you can never restore the default behavior.
 
 | Type | Required |
@@ -189,7 +191,7 @@ A Boolean value that indicates whether the navigation bar is translucent by defa
 
 ### `push()`
 
-```javascript
+```jsx
 push((route: object));
 ```
 
@@ -199,7 +201,7 @@ Navigate forward to a new route
 
 ### `popN()`
 
-```javascript
+```jsx
 popN((n: number));
 ```
 
@@ -209,7 +211,7 @@ Go back N pages at once. When N=1, behavior matches `pop()`
 
 ### `pop()`
 
-```javascript
+```jsx
 pop();
 ```
 
@@ -219,7 +221,7 @@ Go back one page
 
 ### `replaceAtIndex()`
 
-```javascript
+```jsx
 replaceAtIndex((route: object), (index: number));
 ```
 
@@ -231,7 +233,7 @@ Replace a route in the navigation stack.
 
 ### `replace()`
 
-```javascript
+```jsx
 replace((route: object));
 ```
 
@@ -241,7 +243,7 @@ Replace the route for the current page and immediately load the view for the new
 
 ### `replacePrevious()`
 
-```javascript
+```jsx
 replacePrevious((route: object));
 ```
 
@@ -251,7 +253,7 @@ Replace the route/view for the previous page.
 
 ### `popToTop()`
 
-```javascript
+```jsx
 popToTop();
 ```
 
@@ -261,7 +263,7 @@ Go back to the top item
 
 ### `popToRoute()`
 
-```javascript
+```jsx
 popToRoute((route: object));
 ```
 
@@ -271,7 +273,7 @@ Go back to the item for a particular route object
 
 ### `replacePreviousAndPop()`
 
-```javascript
+```jsx
 replacePreviousAndPop((route: object));
 ```
 
@@ -281,7 +283,7 @@ Replaces the previous route/view and transitions back to it.
 
 ### `resetTo()`
 
-```javascript
+```jsx
 resetTo((route: object));
 ```
 

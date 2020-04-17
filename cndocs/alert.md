@@ -18,10 +18,10 @@ title: Alert
   </tr>
   <tr>
     <td style="width: 50%;">
-      <center><img src="/docs/assets/Alert/exampleios.gif"></img></center>
+      <center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/Alert/exampleios.gif"></img></center>
     </td>
     <td style="width: 50%;">
-      <center><img src="/docs/assets/Alert/exampleandroid.gif"></img></center>
+      <center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/Alert/exampleandroid.gif"></img></center>
     </td>
   </tr>
 </table>
@@ -56,18 +56,12 @@ Alert.alert(
 )
 ```
 
-### 查看方法
-
-* [`alert`](alert.md#alert)
-
----
-
 # 文档
 
 ## 方法
 
 ### `alert()`
 
-```javascript
+```jsx
 static alert(title, message?, buttons?, options?)
 ```

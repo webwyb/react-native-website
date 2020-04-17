@@ -6,7 +6,7 @@ original_id: scrollview
 
 Component that wraps platform ScrollView while providing integration with touch locking "responder" system.
 
-Keep in mind that ScrollViews must have a bounded height in order to work, since they contain unbounded-height children into a bounded container (via a scroll interaction). In order to bound the height of a ScrollView, either set the height of the view directly (discouraged) or make sure all parent views have bounded height. Forgetting to transfer `{flex: 1}` down the view stack can lead to errors here, which the element inspector makes easy to debug.
+Keep in mind that ScrollViews must have a bounded height in order to work, since they contain unbounded-height children into a bounded container (via a scroll interaction). In order to bound the height of a ScrollView, either set the height of the view directly (discouraged) or make sure all parent views have bounded height. Forgetting to transfer `{flex: 1}` down the view stack can lead to errors here, which the element inspector can help to debug.
 
 Doesn't yet support other contained responders from blocking this scroll view from becoming the responder.
 
@@ -442,7 +442,7 @@ The current scale of the scroll view content. The default value is 1.0.
 
 ### `scrollTo()`
 
-```javascript
+```jsx
 scrollTo(([destY]: number), ([destX]: number));
 ```
 
@@ -450,7 +450,7 @@ scrollTo(([destY]: number), ([destX]: number));
 
 ### `scrollWithoutAnimationTo()`
 
-```javascript
+```jsx
 scrollWithoutAnimationTo(([destY]: number), ([destX]: number));
 ```
 
@@ -458,6 +458,6 @@ scrollWithoutAnimationTo(([destY]: number), ([destX]: number));
 
 ### `handleScroll()`
 
-```javascript
+```jsx
 handleScroll((e: Event));
 ```

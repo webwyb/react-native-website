@@ -1,13 +1,9 @@
 ---
 id: imageeditor
-title: ImageEditor
+title: 🚧 ImageEditor
 ---
 
-### 查看方法
-
-* [`cropImage`](imageeditor.md#cropimage)
-
----
+> **Deprecated.** Use [@react-native-community/image-editor](https://github.com/react-native-community/react-native-image-editor) instead.
 
 # 文档
 
@@ -15,7 +11,7 @@ title: ImageEditor
 
 ### `cropImage()`
 
-```javascript
+```jsx
 static cropImage(uri, cropData, success, failure)
 ```
 
@@ -30,7 +26,7 @@ static cropImage(uri, cropData, success, failure)
 * `displaySize (optional)` - Size to which you want to scale the cropped image
 * `resizeMode (optional)` - Resizing mode to use when scaling the image
 
-```javascript
+```jsx
 cropData = {
   offset: {x: number, y: number},
   size: {width: number, height: number},

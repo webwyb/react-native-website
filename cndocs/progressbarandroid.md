@@ -1,7 +1,9 @@
 ---
 id: progressbarandroid
-title: ProgressBarAndroid
+title: 🚧 ProgressBarAndroid
 ---
+
+> **Deprecated.** Use [@react-native-community/progress-bar-android](https://github.com/react-native-community/react-native-progress-bar-android) instead.
 
 封装了Android平台上的`ProgressBar`的React组件。这个组件可以用来表示应用正在加载或者有些事情正在进行中。
 
@@ -11,7 +13,6 @@ title: ProgressBarAndroid
 import React, { Component } from "react";
 import {
   ProgressBarAndroid,
-  AppRegistry,
   StyleSheet,
   View
 } from "react-native";
@@ -42,17 +43,6 @@ const styles = StyleSheet.create({
 });
 ```
 
-### 查看Props
-
-* [View props...](view.md#props)
-
-- [`animating`](progressbarandroid.md#animating)
-- [`color`](progressbarandroid.md#color)
-- [`indeterminate`](progressbarandroid.md#indeterminate)
-- [`progress`](progressbarandroid.md#progress)
-- [`styleAttr`](progressbarandroid.md#styleattr)
-- [`testID`](progressbarandroid.md#testid)
-
 ---
 
 # 文档
@@ -81,7 +71,7 @@ const styles = StyleSheet.create({
 
 ### `indeterminate`
 
-决定进度条是否要显示一个不确定的进度。注意这个在styleAttr是Horizontal的时候必须是false。
+决定进度条是否要显示一个不确定的进度。注意这个在styleAttr是Horizontal的时候必须是false，并且需要设置`progress`值。
 
 | 类型              | 必填 |
 | ----------------- | ---- |

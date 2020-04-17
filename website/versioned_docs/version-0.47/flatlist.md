@@ -4,7 +4,7 @@ title: FlatList
 original_id: flatlist
 ---
 
-A performant interface for rendering simple, flat lists, supporting the most handy features:
+A performant interface for rendering basic, flat lists, supporting the most handy features:
 
 - Fully cross-platform.
 - Optional horizontal mode.
@@ -144,7 +144,7 @@ Used to extract a unique key for a given item at the specified index. Key is use
 
 ### `data`
 
-For simplicity, data is just a plain array. If you want to use something else, like an immutable list, use the underlying `VirtualizedList` directly.
+For simplicity, data is a plain array. If you want to use something else, like an immutable list, use the underlying `VirtualizedList` directly.
 
 | Type                    | Required |
 | ----------------------- | -------- |
@@ -225,7 +225,7 @@ A marker property for telling the list to re-render (since it implements `PureCo
 
 ### `getItemLayout`
 
-`getItemLayout` is an optional optimizations that let us skip measurement of dynamic content if you know the height of items a priori. `getItemLayout` is the most efficient, and is easy to use if you have fixed height items, for example:
+`getItemLayout` is an optional optimizations that let us skip measurement of dynamic content if you know the height of items a priori. `getItemLayout` is efficient if you have fixed sized items, for example:
 
     getItemLayout={(data, index) => (
       {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
@@ -405,7 +405,7 @@ Set this when offset is needed for the loading indicator to show correctly.
 
 ### `scrollToEnd()`
 
-```javascript
+```jsx
 scrollToEnd(([params]: object));
 ```
 
@@ -415,7 +415,7 @@ Scrolls to the end of the content. May be janky without `getItemLayout` prop.
 
 ### `scrollToIndex()`
 
-```javascript
+```jsx
 scrollToIndex((params: object));
 ```
 
@@ -427,7 +427,7 @@ Note: cannot scroll to locations outside the render window without specifying th
 
 ### `scrollToItem()`
 
-```javascript
+```jsx
 scrollToItem((params: object));
 ```
 
@@ -439,7 +439,7 @@ Note: cannot scroll to locations outside the render window without specifying th
 
 ### `scrollToOffset()`
 
-```javascript
+```jsx
 scrollToOffset((params: object));
 ```
 
@@ -451,7 +451,7 @@ Check out [scrollToOffset](virtualizedlist.md#scrolltooffset) of VirtualizedList
 
 ### `recordInteraction()`
 
-```javascript
+```jsx
 recordInteraction();
 ```
 
@@ -461,7 +461,7 @@ Tells the list an interaction has occured, which should trigger viewability calc
 
 ### `flashScrollIndicators()`
 
-```javascript
+```jsx
 flashScrollIndicators();
 ```
 

@@ -1,9 +1,11 @@
 ---
 id: segmentedcontrolios
-title: SegmentedControlIOS
+title: 🚧 SegmentedControlIOS
 ---
 
-Use `SegmentedControlIOS` to render a UISegmentedControl iOS.
+> **Deprecated.** Use [@react-native-community/segmented-control](https://github.com/react-native-community/react-native-segmented-control) instead.
+
+Uses `SegmentedControlIOS` to render a UISegmentedControl iOS.
 
 #### Programmatically changing selected index
 
@@ -11,7 +13,7 @@ The selected index can be changed on the fly by assigning the selectedIndex prop
 
 ## Example
 
-```javascript
+```jsx
 <SegmentedControlIOS
   values={['One', 'Two']}
   selectedIndex={this.state.selectedIndex}
@@ -21,25 +23,15 @@ The selected index can be changed on the fly by assigning the selectedIndex prop
 />
 ```
 
-<center><img src="/react-native/docs/assets/SegmentedControlIOS/example.gif" width="360"></img></center>
-
-### Props
-
-- [View props...](view.md#props)
-
-* [`enabled`](segmentedcontrolios.md#enabled)
-* [`momentary`](segmentedcontrolios.md#momentary)
-* [`onChange`](segmentedcontrolios.md#onchange)
-* [`onValueChange`](segmentedcontrolios.md#onvaluechange)
-* [`selectedIndex`](segmentedcontrolios.md#selectedindex)
-* [`tintColor`](segmentedcontrolios.md#tintcolor)
-* [`values`](segmentedcontrolios.md#values)
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/SegmentedControlIOS/example.gif" width="360"></img></center>
 
 ---
 
 # Reference
 
 ## Props
+
+Inherits [View Props](view.md#props).
 
 ### `enabled`
 
@@ -49,7 +41,7 @@ If false the user won't be able to interact with the control. Default value is t
 | ---- | -------- |
 | bool | No       |
 
-<center><img src="/react-native/docs/assets/SegmentedControlIOS/enabled.png" width="360"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/SegmentedControlIOS/enabled.png" width="360"></img></center>
 
 ---
 
@@ -61,7 +53,7 @@ If true, then selecting a segment won't persist visually. The `onValueChange` ca
 | ---- | -------- |
 | bool | No       |
 
-<center><img src="/react-native/docs/assets/SegmentedControlIOS/momentary.gif" width="360"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/SegmentedControlIOS/momentary.gif" width="360"></img></center>
 
 ---
 
@@ -103,7 +95,7 @@ Accent color of the control.
 | ------ | -------- |
 | string | No       |
 
-<center><img src="/react-native/docs/assets/SegmentedControlIOS/tintColor.png" width="360"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/SegmentedControlIOS/tintColor.png" width="360"></img></center>
 
 ---
 

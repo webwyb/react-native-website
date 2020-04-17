@@ -7,7 +7,7 @@ React component that wraps the platform `DrawerLayout` (Android only). The Drawe
 
 Example:
 
-```javascript
+```jsx
 render: function() {
   var navigationView = (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -28,32 +28,13 @@ render: function() {
 },
 ```
 
-### Props
-
-- [View props...](view.md#props)
-
-* [`renderNavigationView`](drawerlayoutandroid.md#rendernavigationview)
-* [`onDrawerClose`](drawerlayoutandroid.md#ondrawerclose)
-* [`drawerPosition`](drawerlayoutandroid.md#drawerposition)
-* [`drawerWidth`](drawerlayoutandroid.md#drawerwidth)
-* [`keyboardDismissMode`](drawerlayoutandroid.md#keyboarddismissmode)
-* [`drawerLockMode`](drawerlayoutandroid.md#drawerlockmode)
-* [`onDrawerOpen`](drawerlayoutandroid.md#ondraweropen)
-* [`onDrawerSlide`](drawerlayoutandroid.md#ondrawerslide)
-* [`onDrawerStateChanged`](drawerlayoutandroid.md#ondrawerstatechanged)
-* [`drawerBackgroundColor`](drawerlayoutandroid.md#drawerbackgroundcolor)
-* [`statusBarBackgroundColor`](drawerlayoutandroid.md#statusbarbackgroundcolor)
-
-### Methods
-
-- [`openDrawer`](drawerlayoutandroid.md#opendrawer)
-- [`closeDrawer`](drawerlayoutandroid.md#closedrawer)
-
 ---
 
 # Reference
 
 ## Props
+
+Inherits [View Props](view.md#props).
 
 ### `renderNavigationView`
 
@@ -158,9 +139,9 @@ Function called when the drawer state has changed. The drawer can be in 3 states
 
 ### `drawerBackgroundColor`
 
-Specifies the background color of the drawer. The default value is white. If you want to set the opacity of the drawer, use rgba. Example:
+Specifies the background color of the drawer. The default value is `white`. If you want to set the opacity of the drawer, use rgba. Example:
 
-```javascript
+```jsx
 return <DrawerLayoutAndroid drawerBackgroundColor="rgba(0,0,0,0.5)" />;
 ```
 
@@ -182,7 +163,7 @@ Make the drawer take the entire screen and draw the background of the status bar
 
 ### `openDrawer()`
 
-```javascript
+```jsx
 openDrawer();
 ```
 
@@ -192,7 +173,7 @@ Opens the drawer.
 
 ### `closeDrawer()`
 
-```javascript
+```jsx
 closeDrawer();
 ```
 

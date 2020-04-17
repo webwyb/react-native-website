@@ -9,20 +9,21 @@ This example shows fetching and displaying an image from local storage as well a
 
 > Note that for network and data images, you will need to manually specify the dimensions of your image!
 
-```ReactNativeWebPlayer
+```SnackPlayer name=Image
 import React, { Component } from 'react';
-import { AppRegistry, View, Image } from 'react-native';
+import { View, Image } from 'react-native';
 
 export default class DisplayAnImage extends Component {
   render() {
     return (
       <View>
         <Image
-          source={require('/react-native/img/favicon.png')}
+          style={{width: 50, height: 50}}
+          source={require('@expo/snack-static/react-native-logo.png')}
         />
         <Image
           style={{width: 50, height: 50}}
-          source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
+          source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}
         />
         <Image
           style={{width: 66, height: 58}}
@@ -32,21 +33,19 @@ export default class DisplayAnImage extends Component {
     );
   }
 }
-
-// skip this line if using Create React Native App
-AppRegistry.registerComponent('DisplayAnImage', () => DisplayAnImage);
 ```
 
 You can also add `style` to an image:
 
-```ReactNativeWebPlayer
+```SnackPlayer name=Image
 import React, { Component } from 'react';
-import { AppRegistry, View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   stretch: {
     width: 50,
-    height: 200
+    height: 200,
+    resizeMode: 'stretch'
   }
 });
 
@@ -56,18 +55,12 @@ export default class DisplayAnImageWithStyle extends Component {
       <View>
         <Image
           style={styles.stretch}
-          source={require('/react-native/img/favicon.png')}
+          source={require('@expo/snack-static/react-native-logo.png')}
         />
       </View>
     );
   }
 }
-
-// skip these lines if using Create React Native App
-AppRegistry.registerComponent(
-  'DisplayAnImageWithStyle',
-  () => DisplayAnImageWithStyle
-);
 ```
 
 ### GIF and WebP support on Android
@@ -79,51 +72,19 @@ You will need to add some optional modules in `android/app/build.gradle`, depend
 ```gradle
 dependencies {
   // If your app supports Android versions before Ice Cream Sandwich (API level 14)
-  implementation 'com.facebook.fresco:animated-base-support:1.10.0'
+  implementation 'com.facebook.fresco:animated-base-support:1.3.0'
 
   // For animated GIF support
-  implementation 'com.facebook.fresco:animated-gif:1.10.0'
+  implementation 'com.facebook.fresco:animated-gif:2.0.0'
 
   // For WebP support, including animated WebP
-  implementation 'com.facebook.fresco:animated-webp:1.10.0'
-  implementation 'com.facebook.fresco:webpsupport:1.10.0'
+  implementation 'com.facebook.fresco:animated-webp:2.1.0'
+  implementation 'com.facebook.fresco:webpsupport:2.0.0'
 
   // For WebP support, without animations
-  implementation 'com.facebook.fresco:webpsupport:1.10.0'
+  implementation 'com.facebook.fresco:webpsupport:2.0.0'
 }
 ```
-
-### Props
-
-- [`style`](image.md#style)
-- [`blurRadius`](image.md#blurradius)
-- [`onLayout`](image.md#onlayout)
-- [`onLoad`](image.md#onload)
-- [`onLoadEnd`](image.md#onloadend)
-- [`onLoadStart`](image.md#onloadstart)
-- [`resizeMode`](image.md#resizemode)
-- [`source`](image.md#source)
-- [`loadingIndicatorSource`](image.md#loadingindicatorsource)
-- [`onError`](image.md#onerror)
-- [`testID`](image.md#testid)
-- [`resizeMethod`](image.md#resizemethod)
-- [`accessibilityLabel`](image.md#accessibilitylabel)
-- [`accessible`](image.md#accessible)
-- [`capInsets`](image.md#capinsets)
-- [`defaultSource`](image.md#defaultsource)
-- [`onPartialLoad`](image.md#onpartialload)
-- [`onProgress`](image.md#onprogress)
-- [`fadeDuration`](image.md#fadeduration)
-- [`progressiveRenderingEnabled`](image.md#progressiverenderingenabled)
-
-### Methods
-
-- [`getSize`](image.md#getsize)
-- [`getSizeWithHeaders`](image.md#getsizewithheaders)
-- [`prefetch`](image.md#prefetch)
-- [`abortPrefetch`](image.md#abortprefetch)
-- [`queryCache`](image.md#querycache)
-- [`resolveAssetSource`](image.md#resolveassetsource)
 
 ---
 
@@ -194,6 +155,7 @@ blurRadius: the blur radius of the blur filter added to the image
 | ------ | -------- |
 | number | No       |
 
+> Tip : IOS you will need to increase `blurRadius` more than `5`
 ---
 
 ### `onLayout`
@@ -240,7 +202,7 @@ e.g., `onLoadStart={(e) => this.setState({loading: true})}`
 
 ### `resizeMode`
 
-Determines how to resize the image when the frame doesn't match the raw image dimensions.
+Determines how to resize the image when the frame doesn't match the raw image dimensions. Defaults to `cover`.
 
 - `cover`: Scale the image uniformly (maintain the image's aspect ratio) so that both dimensions (width and height) of the image will be equal to or larger than the corresponding dimension of the view (minus padding).
 
@@ -262,9 +224,9 @@ Determines how to resize the image when the frame doesn't match the raw image di
 
 The image source (either a remote URL or a local file resource).
 
-This prop can also contain several remote URLs, specified together with their width and height and potentially with scale/other URI arguments. The native side will then choose the best `uri` to display based on the measured size of the image container. A `cache` property can be added to control how networked request interacts with the local cache.
+This prop can also contain several remote URLs, specified together with their width and height and potentially with scale/other URI arguments. The native side will then choose the best `uri` to display based on the measured size of the image container. A `cache` property can be added to control how networked request interacts with the local cache. (For more information see [Cache Control for Images](images#cache-control-ios-only)).
 
-The currently supported formats are `png`, `jpg`, `jpeg`, `bmp`, `gif`, `webp` (Android only), `psd` (iOS only).
+The currently supported formats are `png`, `jpg`, `jpeg`, `bmp`, `gif`, `webp` (Android only), `psd` (iOS only). In addition, iOS supports several RAW image formats. Refer to Apple's documentation for the current list of supported camera models (for iOS 12, see https://support.apple.com/en-ca/HT208967).
 
 | Type                | Required |
 | ------------------- | -------- |
@@ -417,15 +379,13 @@ Android only. When true, enables progressive jpeg streaming. https://frescolib.o
 
 ### `getSize()`
 
-```javascript
+```jsx
 Image.getSize(uri, success, [failure]);
 ```
 
 Retrieve the width and height (in pixels) of an image prior to displaying it. This method can fail if the image cannot be found, or fails to download.
 
 In order to retrieve the image dimensions, the image may first need to be loaded or downloaded, after which it will be cached. This means that in principle you could use this method to preload images, however it is not optimized for that purpose, and may in future be implemented in a way that does not fully load/download the image data. A proper, supported way to preload images will be provided as a separate API.
-
-Does not work for static image resources.
 
 **Parameters:**
 
@@ -439,7 +399,7 @@ Does not work for static image resources.
 
 ### `getSizeWithHeaders()`
 
-```javascript
+```jsx
 Image.getSizeWithHeaders(uri, headers, success, [failure]);
 ```
 
@@ -462,7 +422,7 @@ Does not work for static image resources.
 
 ### `prefetch()`
 
-```javascript
+```jsx
 Image.prefetch(url);
 ```
 
@@ -478,7 +438,7 @@ Prefetches a remote image for later use by downloading it to the disk cache
 
 ### `abortPrefetch()`
 
-```javascript
+```jsx
 Image.abortPrefetch(requestId);
 ```
 
@@ -494,7 +454,7 @@ Abort prefetch request. Android-only.
 
 ### `queryCache()`
 
-```javascript
+```jsx
 Image.queryCache(urls);
 ```
 
@@ -510,7 +470,7 @@ Perform cache interrogation. Returns a mapping from URL to cache status, such as
 
 ### `resolveAssetSource()`
 
-```javascript
+```jsx
 Image.resolveAssetSource(source);
 ```
 

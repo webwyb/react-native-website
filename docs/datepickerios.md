@@ -1,13 +1,56 @@
 ---
 id: datepickerios
-title: DatePickerIOS
+title: 🚧 DatePickerIOS
 ---
+
+> **Deprecated.** Use [@react-native-community/datetimepicker](https://github.com/react-native-community/react-native-datetimepicker) instead. 
 
 Use `DatePickerIOS` to render a date/time picker (selector) on iOS. This is a controlled component, so you must hook in to the `onDateChange` callback and update the `date` prop in order for the component to update, otherwise the user's change will be reverted immediately to reflect `props.date` as the source of truth.
 
 ### Example
 
-```javascript
+<div class="toggler">
+  <ul role="tablist" class="toggle-syntax">
+    <li id="functional" class="button-functional" aria-selected="false" role="tab" tabindex="0" aria-controls="functionaltab" onclick="displayTabs('syntax', 'functional')">
+      Function Component Example
+    </li>
+    <li id="classical" class="button-classical" aria-selected="false" role="tab" tabindex="0" aria-controls="classicaltab" onclick="displayTabs('syntax', 'classical')">
+      Class Component Example
+    </li>
+  </ul>
+</div>
+
+<block class="functional syntax" />
+
+```SnackPlayer name=DatePickerIOS&supportedPlatforms=ios
+import React, {useState} from 'react';
+import {DatePickerIOS, View, StyleSheet} from 'react-native';
+
+export default function App () {
+
+  const [chosenDate, setChosenDate] = useState(new Date());
+
+  return (
+    <View style={styles.container}>
+      <DatePickerIOS
+        date={chosenDate}
+        onDateChange={setChosenDate}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+});
+```
+
+<block class="classical syntax" />
+
+```SnackPlayer name=DatePickerIOS&supportedPlatforms=ios
 import React, {Component} from 'react';
 import {DatePickerIOS, View, StyleSheet} from 'react-native';
 
@@ -43,26 +86,15 @@ const styles = StyleSheet.create({
 });
 ```
 
-<center><img src="/react-native/docs/assets/DatePickerIOS/example.gif" width="360"></img></center>
-
-### Props
-
-- [View props...](view.md#props)
-
-* [`date`](datepickerios.md#date)
-* [`onDateChange`](datepickerios.md#ondatechange)
-* [`maximumDate`](datepickerios.md#maximumdate)
-* [`minimumDate`](datepickerios.md#minimumdate)
-* [`minuteInterval`](datepickerios.md#minuteinterval)
-* [`mode`](datepickerios.md#mode)
-* [`locale`](datepickerios.md#locale)
-* [`timeZoneOffsetInMinutes`](datepickerios.md#timezoneoffsetinminutes)
+<block class="endBlock syntax" />
 
 ---
 
 # Reference
 
 ## Props
+
+Inherits [View Props](view.md#props).
 
 ### `date`
 
@@ -71,6 +103,18 @@ The currently selected date.
 | Type | Required |
 | ---- | -------- |
 | Date | Yes      |
+
+---
+
+### `onChange`
+
+Date change handler.
+
+This is called when the user changes the date or time in the UI. The first and only argument is an Event. For getting the date the picker was changed to, use onDateChange instead.
+
+| Type     | Required |
+| -------- | -------- |
+| function | No       |
 
 ---
 
@@ -98,7 +142,7 @@ Restricts the range of possible date/time values.
 
 Example with `maximumDate` set to December 31, 2017:
 
-<center><img src="/react-native/docs/assets/DatePickerIOS/maximumDate.gif" width="360"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/DatePickerIOS/maximumDate.gif" width="360"></img></center>
 
 ---
 
@@ -126,7 +170,7 @@ The interval at which minutes can be selected.
 
 Example with `minuteInterval` set to `10`:
 
-<center><img src="/react-native/docs/assets/DatePickerIOS/minuteInterval.png" width="360"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/DatePickerIOS/minuteInterval.png" width="360"></img></center>
 
 ---
 
@@ -134,9 +178,9 @@ Example with `minuteInterval` set to `10`:
 
 The date picker mode.
 
-| Type                             | Required |
-| -------------------------------- | -------- |
-| enum('date', 'time', 'datetime') | No       |
+| Type                                          | Required |
+| --------------------------------------------- | -------- |
+| enum('date', 'time', 'datetime', 'countdown') | No       |
 
 Example with `mode` set to `date`, `time`, and `datetime`: ![](/react-native/docs/assets/DatePickerIOS/mode.png)
 
@@ -161,3 +205,13 @@ By default, the date picker will use the device's timezone. With this parameter,
 | Type   | Required |
 | ------ | -------- |
 | number | No       |
+
+---
+
+### `initialDate`
+
+Provides an initial value that will change when the user starts selecting a date. It is useful for use-cases where you do not want to deal with listening to events and updating the date prop to keep the controlled state in sync. The controlled state has known bugs which causes it to go out of sync with native. The initialDate prop is intended to allow you to have native be source of truth.
+
+| Type | Required |
+| ---- | -------- |
+| Date | No       |

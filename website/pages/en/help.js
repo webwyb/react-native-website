@@ -15,9 +15,9 @@ const siteConfig = require(process.cwd() + '/siteConfig.js');
 class Help extends React.Component {
   render() {
     return (
-      <div className="pageContainer">
+      <div className="pageContainer HelpPage">
         <Container className="mainContainer documentContainer postContainer">
-          <h1>The React Native Community</h1>
+          <h1 className="postHeaderTitle">The React Native Community</h1>
           <p>
             There are a lot of developers around the world using React Native.
             This is a brief overview of where you can find them.
@@ -36,7 +36,8 @@ class Help extends React.Component {
             open issues in the{' '}
             <a href="https://github.com/facebook/react-native/issues">
               main repository
-            </a>. If you cannot find an existing issue, please{' '}
+            </a>
+            . If you cannot find an existing issue, please{' '}
             <a href="https://github.com/facebook/react-native/issues/new?template=bug_report.md">
               use the Bug Report template
             </a>{' '}
@@ -52,7 +53,8 @@ class Help extends React.Component {
             tagged with <strong>react-native</strong> or{' '}
             <a href="http://stackoverflow.com/questions/ask?tags=react-native">
               ask your own
-            </a>!
+            </a>
+            !
           </p>
           <h2>Staying up to date</h2>
           <h3>Official channels</h3>
@@ -84,6 +86,10 @@ class Help extends React.Component {
             React meetups as well. React Native has been covered often in past
             React Conf talks. Videos for these talks can be found online in the
             following playlists:{' '}
+            <a href="https://www.youtube.com/watch?v=WXYPpY_mElQ">
+              React Conf 2018
+            </a>
+            {', '}
             <a href="https://www.youtube.com/playlist?list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0">
               React Conf 2017
             </a>
@@ -98,16 +104,31 @@ class Help extends React.Component {
             </a>
             {'. '}
             The next <a href="https://conf.reactjs.org/">React Conf</a> will
-            take place October 25 and 26 in Henderson, Nevada. You can also find
+            take place October 24 and 25 in Henderson, Nevada. You can also find
             a list of dedicated React Native conferences{' '}
             <a href="http://www.awesome-react-native.com/#conferences">here</a>
             {'.'}
+          </p>
+          <h3>React Native Show</h3>
+          <p>
+            The React Native Show is a video series from the React Native team
+            covering updates to React Native:
+          </p>
+          <p>
+            <iframe
+              width="560"
+              height="315"
+              frameBorder="0"
+              allowFullScreen
+              src="https://www.youtube-nocookie.com/embed/bjwwIqaKSo4"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            />
           </p>
           <h2>Communities</h2>
           <h3>Reactiflux Chat</h3>
           <p>
             If you need an answer right away, check out the{' '}
-            <a href="https://discord.gg/0ZcbPKXt5bZjGY5n">Reactiflux Discord</a>{' '}
+            <a href="https://discord.gg/reactiflux">Reactiflux Discord</a>{' '}
             community. There are usually a number of React Native experts there
             who can help out or point you to somewhere you might want to look.
           </p>

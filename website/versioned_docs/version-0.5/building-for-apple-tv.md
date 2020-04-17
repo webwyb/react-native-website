@@ -4,77 +4,14 @@ title: Building For TV Devices
 original_id: building-for-apple-tv
 ---
 
-<style>
-  .toggler li {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    padding: 10px;
-    margin: 0px 2px 0px 2px;
-    border: 1px solid #05A5D1;
-    border-bottom-color: transparent;
-    border-radius: 3px 3px 0px 0px;
-    color: #05A5D1;
-    background-color: transparent;
-    font-size: 0.99em;
-    cursor: pointer;
-  }
-  .toggler li:first-child {
-    margin-left: 0;
-  }
-  .toggler li:last-child {
-    margin-right: 0;
-  }
-  .toggler ul {
-    width: 100%;
-    display: inline-block;
-    list-style-type: none;
-    margin: 0;
-    border-bottom: 1px solid #05A5D1;
-    cursor: default;
-  }
-  @media screen and (max-width: 960px) {
-    .toggler li,
-    .toggler li:first-child,
-    .toggler li:last-child {
-      display: block;
-      border-bottom-color: #05A5D1;
-      border-radius: 3px;
-      margin: 2px 0px 2px 0px;
-    }
-    .toggler ul {
-      border-bottom: 0;
-    }
-  }
-  .toggler a {
-    display: inline-block;
-    padding: 10px 5px;
-    margin: 2px;
-    border: 1px solid #05A5D1;
-    border-radius: 3px;
-    text-decoration: none !important;
-  }
-  .display-platform-ios .toggler .button-ios,
-  .display-platform-android .toggler .button-android {
-    background-color: #05A5D1;
-    color: white;
-  }
-  block { display: none; }
-  .display-platform-ios .ios,
-  .display-platform-android .android {
-    display: block;
-  }
-</style>
-
-TV devices support has been implemented with the intention of making existing React Native applications "just work" on Apple TV and Android TV, with few or no changes needed in the JavaScript code for the applications.
+TV devices support has been implemented with the intention of making existing React Native applications work on Apple TV and Android TV, with few or no changes needed in the JavaScript code for the applications.
 
 <div class="toggler">
-
-  <ul role="tablist" >
+  <ul role="tablist" id="toggle-platform">
     <li id="ios" class="button-ios" aria-selected="false" role="tab" tabindex="0" aria-controls="iostab" onclick="displayTab('platform', 'ios')">
       iOS
     </li>
-    <li id="android" class="button-android" aria-selected="false" role="tab" tabindex="-1" aria-controls="androidtab" onclick="displayTab('platform', 'android')">
+    <li id="android" class="button-android" aria-selected="false" role="tab" tabindex="0" aria-controls="androidtab" onclick="displayTab('platform', 'android')">
       Android
     </li>
   </ul>
@@ -92,7 +29,7 @@ The RNTester app supports Apple TV; use the `RNTester-tvOS` build target to buil
 
 - _JavaScript layer_: Support for Apple TV has been added to `Platform.ios.js`. You can check whether code is running on AppleTV by doing
 
-```javascript
+```jsx
 var Platform = require('Platform');
 var running_on_tv = Platform.isTV;
 
@@ -140,7 +77,7 @@ var running_on_android_tv = Platform.isTV;
 
 - _Common codebase_: Since tvOS and iOS share most Objective-C and JavaScript code in common, most documentation for iOS applies equally to tvOS.
 
-- _Access to touchable controls_: When running on Apple TV, the native view class is `RCTTVView`, which has additional methods to make use of the tvOS focus engine. The `Touchable` mixin has code added to detect focus changes and use existing methods to style the components properly and initiate the proper actions when the view is selected using the TV remote, so `TouchableWithoutFeedback`, `TouchableHighlight` and `TouchableOpacity` will "just work". In particular:
+- _Access to touchable controls_: When running on Apple TV, the native view class is `RCTTVView`, which has additional methods to make use of the tvOS focus engine. The `Touchable` mixin has code added to detect focus changes and use existing methods to style the components properly and initiate the proper actions when the view is selected using the TV remote, so `TouchableWithoutFeedback`, `TouchableHighlight` and `TouchableOpacity` will work as expected. In particular:
 
   - `onFocus` will be executed when the touchable view goes into focus
   - `onBlur` will be executed when the touchable view goes out of focus
@@ -148,7 +85,7 @@ var running_on_android_tv = Platform.isTV;
 
 <block class="android" />
 
-- _Access to touchable controls_: When running on Android TV the Android framework will automatically apply a directional navigation scheme based on relative position of focusable elements in your views. The `Touchable` mixin has code added to detect focus changes and use existing methods to style the components properly and initiate the proper actions when the view is selected using the TV remote, so `TouchableWithoutFeedback`, `TouchableHighlight`, `TouchableOpacity` and `TouchableNativeFeedback` will "just work". In particular:
+- _Access to touchable controls_: When running on Android TV the Android framework will automatically apply a directional navigation scheme based on relative position of focusable elements in your views. The `Touchable` mixin has code added to detect focus changes and use existing methods to style the components properly and initiate the proper actions when the view is selected using the TV remote, so `TouchableWithoutFeedback`, `TouchableHighlight`, `TouchableOpacity` and `TouchableNativeFeedback` will work as expected. In particular:
 
   - `onFocus` will be executed when the touchable view goes into focus
   - `onBlur` will be executed when the touchable view goes out of focus
@@ -164,7 +101,7 @@ var running_on_android_tv = Platform.isTV;
 
 <block class="ios android">
 
-```javascript
+```jsx
 var TVEventHandler = require('TVEventHandler');
 
 class Game2048 extends React.Component {
@@ -205,7 +142,7 @@ class Game2048 extends React.Component {
 
 <block class="ios" />
 
-- _Dev Menu support_: On the simulator, cmd-D will bring up the developer menu, just like on iOS. To bring it up on a real Apple TV device, make a long press on the play/pause button on the remote. (Please do not shake the Apple TV device, that will not work :) )
+- _Dev Menu support_: On the simulator, cmd-D will bring up the developer menu, similar to iOS. To bring it up on a real Apple TV device, make a long press on the play/pause button on the remote. (Please do not shake the Apple TV device, that will not work :) )
 
 - _TV remote animations_: `RCTTVView` native code implements Apple-recommended parallax animations to help guide the eye as the user navigates through views. The animations can be disabled or adjusted with new optional view properties.
 
@@ -215,101 +152,16 @@ class Game2048 extends React.Component {
 
 <block class="android" />
 
-- _Dev Menu support_: On the simulator, cmd-M will bring up the developer menu, just like on Android. To bring it up on a real Android TV device, press the menu button or long press the fast-forward button on the remote. (Please do not shake the Android TV device, that will not work :) )
+- _Dev Menu support_: On the simulator, cmd-M will bring up the developer menu, similar to Android. To bring it up on a real Android TV device, press the menu button or long press the fast-forward button on the remote. (Please do not shake the Android TV device, that will not work :) )
 
 <block class="ios" />
 
 - _Known issues_:
 
-  - [ListView scrolling](https://github.com/facebook/react-native/issues/12793). The issue can be easily worked around by setting `removeClippedSubviews` to false in ListView and similar components. For more discussion of this issue, see [this PR](https://github.com/facebook/react-native/pull/12944).
+  - [ListView scrolling](https://github.com/facebook/react-native/issues/12793). The issue can be worked around by setting `removeClippedSubviews` to false in ListView and similar components. For more discussion of this issue, see [this PR](https://github.com/facebook/react-native/pull/12944).
 
 <block class="android" />
 
 - _Known issues_:
 
   - `InputText` components do not work for now (i.e. they cannot receive focus).
-
-<script>
-  function displayTab(type, value) {
-    var container = document.getElementsByTagName('block')[0].parentNode;
-    container.className = 'display-' + type + '-' + value + ' ' +
-      container.className.replace(RegExp('display-' + type + '-[a-z]+ ?'), '');
-  }
-  function convertBlocks() {
-    // Convert <div>...<span><block /></span>...</div>
-    // Into <div>...<block />...</div>
-    var blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      var span = blocks[i].parentNode;
-      var container = span.parentNode;
-      container.insertBefore(block, span);
-      container.removeChild(span);
-    }
-    // Convert <div>...<block />content<block />...</div>
-    // Into <div>...<block>content</block><block />...</div>
-    blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      while (
-        block.nextSibling &&
-        block.nextSibling.tagName !== 'BLOCK'
-      ) {
-        block.appendChild(block.nextSibling);
-      }
-    }
-  }
-  function guessPlatformAndOS() {
-    if (!document.querySelector('block')) {
-      return;
-    }
-    // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
-    // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
-    var foundHash = false;
-    if (
-      window.location.hash !== '' &&
-      window.location.hash !== 'content'
-    ) {
-      // content is default
-      var hashLinks = document.querySelectorAll(
-        'a.hash-link'
-      );
-      for (
-        var i = 0;
-        i < hashLinks.length && !foundHash;
-        ++i
-      ) {
-        if (hashLinks[i].hash === window.location.hash) {
-          var parent = hashLinks[i].parentElement;
-          while (parent) {
-            if (parent.tagName === 'BLOCK') {
-              // Could be more than one target os and dev platform, but just choose some sort of order
-              // of priority here.
-              // Target Platform
-              if (parent.className.indexOf('ios') > -1) {
-                displayTab('platform', 'ios');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('android') > -1
-              ) {
-                displayTab('platform', 'android');
-                foundHash = true;
-              } else {
-                break;
-              }
-            }
-            parent = parent.parentElement;
-          }
-        }
-      }
-    }
-    // Do the default if there is no matching hash
-    if (!foundHash) {
-      var isMac = navigator.platform === 'MacIntel';
-      var isWindows = navigator.platform === 'Win32';
-      displayTab('platform', isMac ? 'ios' : 'android');
-    }
-  }
-  convertBlocks();
-  guessPlatformAndOS();
-</script>

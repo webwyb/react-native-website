@@ -15,71 +15,21 @@ ScrollView内部的其他响应者尚无法阻止ScrollView本身成为响应者
 
 此外`FlatList`还可以方便地渲染行间分隔线，支持多列布局，无限滚动加载等等。
 
-### 查看Props
-
-* [View props...](view.md#props)
-
-- [`alwaysBounceVertical`](scrollview.md#alwaysbouncevertical)
-- [`contentContainerStyle`](scrollview.md#contentcontainerstyle)
-- [`disableScrollViewPanResponder`](scrollview.md#disablescrollviewpanresponder)
-- [`keyboardDismissMode`](scrollview.md#keyboarddismissmode)
-- [`keyboardShouldPersistTaps`](scrollview.md#keyboardshouldpersisttaps)
-- [`onContentSizeChange`](scrollview.md#oncontentsizechange)
-- [`onMomentumScrollBegin`](scrollview.md#onmomentumscrollbegin)
-- [`onMomentumScrollEnd`](scrollview.md#onmomentumscrollend)
-- [`onScroll`](scrollview.md#onscroll)
-- [`onScrollBeginDrag`](scrollview.md#onscrollbegindrag)
-- [`onScrollEndDrag`](scrollview.md#onscrollenddrag)
-- [`pagingEnabled`](scrollview.md#pagingenabled)
-- [`refreshControl`](scrollview.md#refreshcontrol)
-- [`removeClippedSubviews`](scrollview.md#removeclippedsubviews)
-- [`scrollEnabled`](scrollview.md#scrollenabled)
-- [`showsHorizontalScrollIndicator`](scrollview.md#showshorizontalscrollindicator)
-- [`showsVerticalScrollIndicator`](scrollview.md#showsverticalscrollindicator)
-- [`stickyHeaderIndices`](scrollview.md#stickyheaderindices)
-- [`endFillColor`](scrollview.md#endfillcolor)
-- [`overScrollMode`](scrollview.md#overscrollmode)
-- [`scrollPerfTag`](scrollview.md#scrollperftag)
-- [`DEPRECATED_sendUpdatedChildFrames`](scrollview.md#deprecated-sendupdatedchildframes)
-- [`alwaysBounceHorizontal`](scrollview.md#alwaysbouncehorizontal)
-- [`horizontal`](scrollview.md#horizontal)
-- [`automaticallyAdjustContentInsets`](scrollview.md#automaticallyadjustcontentinsets)
-- [`bounces`](scrollview.md#bounces)
-- [`bouncesZoom`](scrollview.md#bounceszoom)
-- [`canCancelContentTouches`](scrollview.md#cancancelcontenttouches)
-- [`centerContent`](scrollview.md#centercontent)
-- [`contentInset`](scrollview.md#contentinset)
-- [`contentInsetAdjustmentBehavior`](scrollview.md#contentinsetadjustmentbehavior)
-- [`contentOffset`](scrollview.md#contentoffset)
-- [`decelerationRate`](scrollview.md#decelerationrate)
-- [`directionalLockEnabled`](scrollview.md#directionallockenabled)
-- [`indicatorStyle`](scrollview.md#indicatorstyle)
-- [`maximumZoomScale`](scrollview.md#maximumzoomscale)
-- [`minimumZoomScale`](scrollview.md#minimumzoomscale)
-- [`pinchGestureEnabled`](scrollview.md#pinchgestureenabled)
-- [`scrollEventThrottle`](scrollview.md#scrolleventthrottle)
-- [`scrollIndicatorInsets`](scrollview.md#scrollindicatorinsets)
-- [`scrollsToTop`](scrollview.md#scrollstotop)
-- [`snapToAlignment`](scrollview.md#snaptoalignment)
-- [`snapToInterval`](scrollview.md#snaptointerval)
-- [`snapToOffsets`](scrollview.md#snaptooffsets)
-- [`snapToStart`](scrollview.md#snaptostart)
-- [`snapToEnd`](scrollview.md#snaptoend)
-- [`zoomScale`](scrollview.md#zoomscale)
-- [`nestedScrollEnabled`](scrollview.md#nestedscrollenabled)
-
-### 查看方法
-
-* [`scrollTo`](scrollview.md#scrollto)
-* [`scrollToEnd`](scrollview.md#scrolltoend)
-* [`scrollWithoutAnimationTo`](scrollview.md#scrollwithoutanimationto)
-* [`flashScrollIndicators`](scrollview.md#flashscrollindicators)
-
 ---
 
 # 文档
 
 ## Props
+
+### `alwaysBounceHorizontal`
+
+When true, the scroll view bounces horizontally when it reaches the end even if the content is smaller than the scroll view itself. The default value is true when `horizontal={true}` and false otherwise.
+
+| Type | Required | Platform |
+| ---- | -------- | -------- |
+| bool | No       | iOS      |
+
+---
 
 ### `alwaysBounceVertical`
 
@@ -195,7 +145,19 @@ _仅iOS可用的值_
 
 ### `onScroll`
 
-在滚动的过程中，每帧最多调用一次此回调函数。调用的频率可以用`scrollEventThrottle`属性来控制。
+在滚动的过程中，每帧最多调用一次此回调函数。调用的频率可以用`scrollEventThrottle`属性来控制。The event has the following shape (all values are numbers):
+
+```js
+{
+  nativeEvent: {
+    contentInset: {bottom, left, right, top},
+    contentOffset: {x, y},
+    contentSize: {height, width},
+    layoutMeasurement: {height, width},
+    zoomScale
+  }
+}
+```
 
 | 类型     | 必填 |
 | -------- | ---- |
@@ -616,7 +578,7 @@ Use in conjuction with `snapToOffsets`. By default, the end of the list counts a
 
 ### `scrollTo()`
 
-```javascript
+```jsx
 scrollTo(
   ([y]: number),
   object,
@@ -640,7 +602,7 @@ scrollTo(
 
 ### `scrollToEnd()`
 
-```javascript
+```jsx
 scrollToEnd(([options]: {animated: boolean, duration: number}));
 ```
 
@@ -652,7 +614,7 @@ scrollToEnd(([options]: {animated: boolean, duration: number}));
 
 ### `scrollWithoutAnimationTo()`
 
-```javascript
+```jsx
 scrollWithoutAnimationTo(y, x);
 ```
 
@@ -662,7 +624,7 @@ Deprecated, use `scrollTo` instead.
 
 ### `flashScrollIndicators()`
 
-```javascript
+```jsx
 flashScrollIndicators();
 ```
 

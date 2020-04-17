@@ -203,6 +203,8 @@ Function that is invoked when the `WebView` loading starts or ends.
 
 ### `originWhitelist`
 
+<!-- alex ignore retext-equality -->
+
 List of origin strings to allow being navigated to. The strings allow wildcards and get matched against _just_ the origin (not the full URL). If the user taps to navigate to a new page but the new page is not in this whitelist, the URL will be handled by the OS. The default whitelisted origins are "http://*" and "https://*".
 
 | Type             | Required |
@@ -445,13 +447,13 @@ Boolean that sets whether JavaScript running in the context of a file scheme URL
 
 ### `extraNativeComponentConfig()`
 
-```javascript
+```jsx
 static extraNativeComponentConfig()
 ```
 
 ### `goForward()`
 
-```javascript
+```jsx
 goForward();
 ```
 
@@ -459,7 +461,7 @@ Go forward one page in the web view's history.
 
 ### `goBack()`
 
-```javascript
+```jsx
 goBack();
 ```
 
@@ -467,7 +469,7 @@ Go back one page in the web view's history.
 
 ### `reload()`
 
-```javascript
+```jsx
 reload();
 ```
 
@@ -475,7 +477,7 @@ Reloads the current page.
 
 ### `stopLoading()`
 
-```javascript
+```jsx
 stopLoading();
 ```
 

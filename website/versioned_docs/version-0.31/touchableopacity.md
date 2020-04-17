@@ -4,7 +4,7 @@ title: TouchableOpacity
 original_id: touchableopacity
 ---
 
-A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, dimming it. This is done without actually changing the view hierarchy, and in general is easy to add to an app without weird side-effects.
+A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, dimming it. This is done without actually changing the view hierarchy, and in general it can be added to an app without weird side-effects.
 
 Example:
 
@@ -49,7 +49,7 @@ Determines what the opacity of the wrapped view should be when touch is active. 
 
 ### `setOpacityTo()`
 
-```javascript
+```jsx
 setOpacityTo((value: number));
 ```
 

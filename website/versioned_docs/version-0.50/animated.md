@@ -4,11 +4,11 @@ title: Animated
 original_id: animated
 ---
 
-The `Animated` library is designed to make animations fluid, powerful, and easy to build and maintain. `Animated` focuses on declarative relationships between inputs and outputs, with configurable transforms in between, and simple `start`/`stop` methods to control time-based animation execution.
+The `Animated` library is designed to make animations fluid, powerful, and painless to build and maintain. `Animated` focuses on declarative relationships between inputs and outputs, with configurable transforms in between, and `start`/`stop` methods to control time-based animation execution.
 
-The simplest workflow for creating an animation is to create an `Animated.Value`, hook it up to one or more style attributes of an animated component, and then drive updates via animations using `Animated.timing()`:
+The general workflow for creating an animation is to create an `Animated.Value`, hook it up to one or more style attributes of an animated component, and then drive updates via animations using `Animated.timing()`:
 
-```javascript
+```jsx
 Animated.timing(
   // Animate value over time
   this.state.fadeAnim, // The value to drive
@@ -34,7 +34,7 @@ There are two value types you can use with `Animated`:
 `Animated` provides three types of animation types. Each animation type provides a particular animation curve that controls how your values animate from their initial value to the final value:
 
 - [`Animated.decay()`](animated.md#decay) starts with an initial velocity and gradually slows to a stop.
-- [`Animated.spring()`](animated.md#spring) provides a simple spring physics model.
+- [`Animated.spring()`](animated.md#spring) provides a basic spring physics model.
 - [`Animated.timing()`](animated.md#timing) animates a value over time using [easing functions](easing.md).
 
 In most cases, you will be using `timing()`. By default, it uses a symmetric easeInOut curve that conveys the gradual acceleration of an object to full speed and concludes by gradually decelerating to a stop.
@@ -51,7 +51,7 @@ You can use the native driver by specifying `useNativeDriver: true` in your anim
 
 ### Animatable components
 
-Only animatable components can be animated. These special components do the magic of binding the animated values to the properties, and do targeted native updates to avoid the cost of the react render and reconciliation process on every frame. They also handle cleanup on unmount so they are safe by default.
+Only animatable components can be animated. These unique components do the magic of binding the animated values to the properties, and do targeted native updates to avoid the cost of the react render and reconciliation process on every frame. They also handle cleanup on unmount so they are safe by default.
 
 - [`createAnimatedComponent()`](animated.md#createanimatedcomponent) can be used to make a component animatable.
 
@@ -71,7 +71,7 @@ Animations can also be combined in complex ways using composition functions:
 - [`Animated.sequence()`](animated.md#sequence) starts the animations in order, waiting for each to complete before starting the next.
 - [`Animated.stagger()`](animated.md#stagger) starts animations in order and in parallel, but with successive delays.
 
-Animations can also be chained together simply by setting the `toValue` of one animation to be another `Animated.Value`. See [Tracking dynamic values](animations.md#tracking-dynamic-values) in the Animations guide.
+Animations can also be chained together by setting the `toValue` of one animation to be another `Animated.Value`. See [Tracking dynamic values](animations.md#tracking-dynamic-values) in the Animations guide.
 
 By default, if one animation is stopped or interrupted, then all other animations in the group are also stopped.
 
@@ -86,7 +86,7 @@ You can combine two animated values via addition, multiplication, division, or m
 
 ### Interpolation
 
-The `interpolate()` function allows input ranges to map to different output ranges. By default, it will extrapolate the curve beyond the ranges given, but you can also have it clamp the output value. It uses lineal interpolation by default but also supports easing functions.
+The `interpolate()` function allows input ranges to map to different output ranges. By default, it will extrapolate the curve beyond the ranges given, but you can also have it clamp the output value. It uses linear interpolation by default but also supports easing functions.
 
 - [`interpolate()`](animated.md#interpolate)
 
@@ -100,7 +100,7 @@ Gestures, like panning or scrolling, and other events can map directly to animat
 
 For example, when working with horizontal scrolling gestures, you would do the following in order to map `event.nativeEvent.contentOffset.x` to `scrollX` (an `Animated.Value`):
 
-```javascript
+```jsx
  onScroll={Animated.event(
    // scrollX = e.nativeEvent.contentOffset.x
    [{ nativeEvent: {
@@ -148,7 +148,7 @@ For example, when working with horizontal scrolling gestures, you would do the f
 
 ### `decay()`
 
-```javascript
+```jsx
 static decay(value, config)
 ```
 
@@ -165,7 +165,7 @@ Config is an object that may have the following options:
 
 ### `timing()`
 
-```javascript
+```jsx
 static timing(value, config)
 ```
 
@@ -183,7 +183,7 @@ Config is an object that may have the following options:
 
 ### `spring()`
 
-```javascript
+```jsx
 static spring(value, config)
 ```
 
@@ -193,14 +193,14 @@ Config is an object that may have the following options.
 
 Note that you can only define one of bounciness/speed, tension/friction, or stiffness/damping/mass, but not more than one:
 
-The friction/tension or bounciness/speed options match the spring model in [Facebook Pop](https://github.com/facebook/pop), [Rebound](http://facebook.github.io/rebound/), and [Origami](http://origami.design/).
+The friction/tension or bounciness/speed options match the spring model in [`Facebook Pop`](https://github.com/facebook/pop), [Rebound](http://facebook.github.io/rebound/), and [Origami](http://origami.design/).
 
 - `friction`: Controls "bounciness"/overshoot. Default 7.
 - `tension`: Controls speed. Default 40.
 - `speed`: Controls speed of the animation. Default 12.
 - `bounciness`: Controls bounciness. Default 8.
 
-Specifying stiffness/damping/mass as parameters makes `Animated.spring` use an analytical spring model based on the motion equations of a [damped harmonic oscillator](https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator). This behavior is slightly more precise and faithful to the physics behind spring dynamics, and closely mimics the implementation in iOS's CASpringAnimation primitive.
+Specifying stiffness/damping/mass as parameters makes `Animated.spring` use an analytical spring model based on the motion equations of a [damped harmonic oscillator](https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator). This behavior is slightly more precise and faithful to the physics behind spring dynamics, and closely mimics the implementation in iOS's CASpringAnimation.
 
 - `stiffness`: The spring stiffness coefficient. Default 100.
 - `damping`: Defines how the spring’s motion should be damped due to the forces of friction. Default 10.
@@ -220,7 +220,7 @@ Other configuration options are as follows:
 
 ### `add()`
 
-```javascript
+```jsx
 static add(a, b)
 ```
 
@@ -230,7 +230,7 @@ Creates a new Animated value composed from two Animated values added together.
 
 ### `divide()`
 
-```javascript
+```jsx
 static divide(a, b)
 ```
 
@@ -240,7 +240,7 @@ Creates a new Animated value composed by dividing the first Animated value by th
 
 ### `multiply()`
 
-```javascript
+```jsx
 static multiply(a, b)
 ```
 
@@ -250,7 +250,7 @@ Creates a new Animated value composed from two Animated values multiplied togeth
 
 ### `modulo()`
 
-```javascript
+```jsx
 static modulo(a, modulus)
 ```
 
@@ -260,7 +260,7 @@ Creates a new Animated value that is the (non-negative) modulo of the provided A
 
 ### `diffClamp()`
 
-```javascript
+```jsx
 static diffClamp(a, min, max)
 ```
 
@@ -272,7 +272,7 @@ This is useful with scroll events, for example, to show the navbar when scrollin
 
 ### `delay()`
 
-```javascript
+```jsx
 static delay(time)
 ```
 
@@ -282,7 +282,7 @@ Starts an animation after the given delay.
 
 ### `sequence()`
 
-```javascript
+```jsx
 static sequence(animations)
 ```
 
@@ -292,7 +292,7 @@ Starts an array of animations in order, waiting for each to complete before star
 
 ### `parallel()`
 
-```javascript
+```jsx
 static parallel(animations, config?)
 ```
 
@@ -302,7 +302,7 @@ Starts an array of animations all at the same time. By default, if one of the an
 
 ### `stagger()`
 
-```javascript
+```jsx
 static stagger(time, animations)
 ```
 
@@ -312,7 +312,7 @@ Array of animations may run in parallel (overlap), but are started in sequence w
 
 ### `loop()`
 
-```javascript
+```jsx
 static loop(animation, config?)
 ```
 
@@ -326,13 +326,13 @@ Config is an object that may have the following options:
 
 ### `event()`
 
-```javascript
+```jsx
 static event(argMapping, config?)
 ```
 
 Takes an array of mappings and extracts values from each arg accordingly, then calls `setValue` on the mapped outputs. e.g.
 
-```javascript
+```jsx
  onScroll={Animated.event(
    [{nativeEvent: {contentOffset: {x: this._scrollX}}}],
    {listener: (event) => console.log(event)}, // Optional async listener
@@ -354,7 +354,7 @@ Config is an object that may have the following options:
 
 ### `forkEvent()`
 
-```javascript
+```jsx
 static forkEvent(event, listener)
 ```
 
@@ -364,7 +364,7 @@ Advanced imperative API for snooping on animated events that are passed in throu
 
 ### `unforkEvent()`
 
-```javascript
+```jsx
 static unforkEvent(event, listener)
 ```
 

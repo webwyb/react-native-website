@@ -9,7 +9,7 @@ Opacity is controlled by wrapping the children in an Animated.View, which is add
 
 Example:
 
-```javascript
+```jsx
 renderButton: function() {
   return (
     <TouchableOpacity onPress={this._onPressButton}>
@@ -24,17 +24,69 @@ renderButton: function() {
 
 ### Example
 
-```ReactNativeWebPlayer
+<div class="toggler">
+  <ul role="tablist" class="toggle-syntax">
+    <li id="functional" class="button-functional" aria-selected="false" role="tab" tabindex="0" aria-controls="functionaltab" onclick="displayTabs('syntax', 'functional')">
+      Function Component Example
+    </li>
+    <li id="classical" class="button-classical" aria-selected="false" role="tab" tabindex="0" aria-controls="classicaltab" onclick="displayTabs('syntax', 'classical')">
+      Class Component Example
+    </li>
+  </ul>
+</div>
+
+<block class="functional syntax" />
+
+```SnackPlayer name=Function%20Component%20Example%20TouchableOpacity
+import React, { useState } from 'react';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  const handleIncrementCount = () => setCount(prevState => prevState + 1);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.countContainer}>
+        <Text>Count: {count}</Text>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={handleIncrementCount}>
+        <Text>Touch Here</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+  },
+  countContainer: {
+    alignItems: 'center',
+    padding: 10,
+  },
+});
+```
+
+<block class="classical syntax" />
+
+```SnackPlayer name=Class%20Component%20Example
 import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
   TouchableOpacity,
   Text,
   View,
 } from 'react-native'
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = { count: 0 }
@@ -84,28 +136,16 @@ const styles = StyleSheet.create({
     color: '#FF00FF'
   }
 })
-
-AppRegistry.registerComponent('App', () => App)
 ```
-
-### Props
-
-- [TouchableWithoutFeedback props...](touchablewithoutfeedback.md#props)
-
-* [`style`](touchableopacity.md#style)
-* [`activeOpacity`](touchableopacity.md#activeopacity)
-* [`tvParallaxProperties`](touchableopacity.md#tvparallaxproperties)
-* [`hasTVPreferredFocus`](touchableopacity.md#hastvpreferredfocus)
-
-### Methods
-
-- [`setOpacityTo`](touchableopacity.md#setopacityto)
+<block class="endBlock syntax" />
 
 ---
 
 # Reference
 
 ## Props
+
+Inherits [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props).
 
 ### `style`
 
@@ -145,11 +185,61 @@ _(Apple TV only)_ TV preferred focus (see documentation for the View component).
 | ---- | -------- | -------- |
 | bool | No       | iOS      |
 
+---
+
+### `nextFocusDown`
+
+TV next focus down (see documentation for the View component).
+
+| Type | Required | Platform |
+| ---- | -------- | -------- |
+| bool | No       | Android  |
+
+---
+
+### `nextFocusForward`
+
+TV next focus forward (see documentation for the View component).
+
+| Type | Required | Platform |
+| ---- | -------- | -------- |
+| bool | No       | Android  |
+
+---
+
+### `nextFocusLeft`
+
+TV next focus left (see documentation for the View component).
+
+| Type | Required | Platform |
+| ---- | -------- | -------- |
+| bool | No       | Android  |
+
+---
+
+### `nextFocusRight`
+
+TV next focus right (see documentation for the View component).
+
+| Type | Required | Platform |
+| ---- | -------- | -------- |
+| bool | No       | Android  |
+
+---
+
+### `nextFocusUp`
+
+TV next focus up (see documentation for the View component).
+
+| Type | Required | Platform |
+| ---- | -------- | -------- |
+| bool | No       | iOS      |
+
 ## Methods
 
 ### `setOpacityTo()`
 
-```javascript
+```jsx
 setOpacityTo((value: number), (duration: number));
 ```
 

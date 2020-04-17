@@ -9,26 +9,6 @@ title: AppRegistry
 
 `AppRegistry`应当在`require`序列中尽可能早的被 require 到，以确保 JS 运行环境在其它模块之前被准备好。
 
-### 查看方法
-
-- [`setWrapperComponentProvider`](appregistry.md#setwrappercomponentprovider)
-- [`registerConfig`](appregistry.md#registerconfig)
-- [`registerComponent`](appregistry.md#registercomponent)
-- [`registerRunnable`](appregistry.md#registerrunnable)
-- [`registerSection`](appregistry.md#registersection)
-- [`getAppKeys`](appregistry.md#getappkeys)
-- [`getSectionKeys`](appregistry.md#getsectionkeys)
-- [`getSections`](appregistry.md#getsections)
-- [`getRunnable`](appregistry.md#getrunnable)
-- [`getRegistry`](appregistry.md#getregistry)
-- [`setComponentProviderInstrumentationHook`](appregistry.md#setcomponentproviderinstrumentationhook)
-- [`runApplication`](appregistry.md#runapplication)
-- [`unmountApplicationComponentAtRootTag`](appregistry.md#unmountapplicationcomponentatroottag)
-- [`registerHeadlessTask`](appregistry.md#registerheadlesstask)
-- [`registerCancellableHeadlessTask`](appregistry.md#registercancellableheadlesstask)
-- [`startHeadlessTask`](appregistry.md#startheadlesstask)
-- [`cancelHeadlessTask`](appregistry.md#cancelheadlesstask)
-
 ---
 
 # 文档
@@ -37,7 +17,7 @@ title: AppRegistry
 
 ### `setWrapperComponentProvider()`
 
-```javascript
+```jsx
 static setWrapperComponentProvider(provider)
 ```
 
@@ -45,7 +25,7 @@ static setWrapperComponentProvider(provider)
 
 ### `registerConfig()`
 
-```javascript
+```jsx
 static registerConfig(config)
 ```
 
@@ -53,7 +33,7 @@ static registerConfig(config)
 
 ### `registerComponent()`
 
-```javascript
+```jsx
 static registerComponent(appKey, componentProvider, section?)
 ```
 
@@ -61,7 +41,7 @@ static registerComponent(appKey, componentProvider, section?)
 
 ### `registerRunnable()`
 
-```javascript
+```jsx
 static registerRunnable(appKey, run)
 ```
 
@@ -69,7 +49,7 @@ static registerRunnable(appKey, run)
 
 ### `registerSection()`
 
-```javascript
+```jsx
 static registerSection(appKey, component)
 ```
 
@@ -77,7 +57,7 @@ static registerSection(appKey, component)
 
 ### `getAppKeys()`
 
-```javascript
+```jsx
 static getAppKeys()
 ```
 
@@ -85,7 +65,7 @@ static getAppKeys()
 
 ### `getSectionKeys()`
 
-```javascript
+```jsx
 static getSectionKeys()
 ```
 
@@ -93,7 +73,7 @@ static getSectionKeys()
 
 ### `getSections()`
 
-```javascript
+```jsx
 static getSections()
 ```
 
@@ -101,7 +81,7 @@ static getSections()
 
 ### `getRunnable()`
 
-```javascript
+```jsx
 static getRunnable(appKey)
 ```
 
@@ -109,7 +89,7 @@ static getRunnable(appKey)
 
 ### `getRegistry()`
 
-```javascript
+```jsx
 static getRegistry()
 ```
 
@@ -117,7 +97,7 @@ static getRegistry()
 
 ### `setComponentProviderInstrumentationHook()`
 
-```javascript
+```jsx
 static setComponentProviderInstrumentationHook(hook)
 ```
 
@@ -125,7 +105,7 @@ static setComponentProviderInstrumentationHook(hook)
 
 ### `runApplication()`
 
-```javascript
+```jsx
 static runApplication(appKey, appParameters)
 ```
 
@@ -133,7 +113,7 @@ static runApplication(appKey, appParameters)
 
 ### `unmountApplicationComponentAtRootTag()`
 
-```javascript
+```jsx
 static unmountApplicationComponentAtRootTag(rootTag)
 ```
 
@@ -141,7 +121,7 @@ static unmountApplicationComponentAtRootTag(rootTag)
 
 ### `registerHeadlessTask()`
 
-```javascript
+```jsx
 static registerHeadlessTask(taskKey, taskProvider)
 ```
 
@@ -151,7 +131,7 @@ Register a headless task. A headless task is a bit of code that runs without a U
 
 ### `registerCancellableHeadlessTask()`
 
-```javascript
+```jsx
 static registerCancellableHeadlessTask(taskKey, taskProvider, taskCancelProvider)
 ```
 
@@ -159,7 +139,7 @@ Register a headless task which can be cancelled. A headless task is a bit of cod
 
 ### `startHeadlessTask()`
 
-```javascript
+```jsx
 static startHeadlessTask(taskId, taskKey, data)
 ```
 
@@ -171,7 +151,7 @@ Only called from native code. Starts a headless task.
 
 ### `cancelHeadlessTask()`
 
-```javascript
+```jsx
 static cancelHeadlessTask(taskId, taskKey)
 ```
 

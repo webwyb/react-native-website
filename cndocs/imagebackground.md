@@ -11,20 +11,13 @@ Note that you must specify some width and height style attributes.
 
 ## Example
 
-```javascript
+```jsx
 return (
   <ImageBackground source={...} style={{width: '100%', height: '100%'}}>
     <Text>Inside</Text>
   </ImageBackground>
 );
 ```
-
-### Props
-
-* [`Image` props...](image.md#props)
-* [`style`](imagebackground.md#style)
-* [`imageStyle`](imagebackground.md#imageStyle)
-* [`imageRef`](imagebackground.md#imageRef)
 
 ---
 

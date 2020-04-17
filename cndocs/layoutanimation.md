@@ -17,21 +17,6 @@ UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationE
 
 上面这段代码应该写在任何组件加载之前，比如可以写到 index.js 的开头。
 
-### 查看方法
-
-* [`configureNext`](layoutanimation.md#configurenext)
-* [`create`](layoutanimation.md#create)
-* [`checkConfig`](layoutanimation.md#checkconfig)
-
-### 查看属性
-
-* [`Types`](layoutanimation.md#types)
-* [`Properties`](layoutanimation.md#properties)
-* [`Presets`](layoutanimation.md#presets)
-* [`easeInEaseOut`](layoutanimation.md#easeineaseout)
-* [`linear`](layoutanimation.md#linear)
-* [`spring`](layoutanimation.md#spring)
-
 ---
 
 # 文档
@@ -40,7 +25,7 @@ UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationE
 
 ### `configureNext()`
 
-```javascript
+```jsx
 static configureNext(config, onAnimationDidEnd?)
 ```
 
@@ -63,19 +48,13 @@ static configureNext(config, onAnimationDidEnd?)
 
 ### `create()`
 
-```javascript
+```jsx
 static create(duration, type, creationProp)
 ```
 
 用来创建`configureNext`所需的 config 参数的辅助函数。
 
 ---
-
-### `checkConfig()`
-
-```javascript
-static checkConfig(config, location, name)
-```
 
 ## 属性
 

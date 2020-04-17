@@ -10,7 +10,7 @@ As the name implies, it is only available on iOS. Take a look at [`React Navigat
 
 To set up the navigator, provide the `initialRoute` prop with a route object. A route object is used to describe each scene that your app navigates to. `initialRoute` represents the first route in your navigator.
 
-```javascript
+```jsx
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {NavigatorIOS, Text, TouchableHighlight, View} from 'react-native';
@@ -58,7 +58,7 @@ In this code, the navigator renders the component specified in initialRoute, whi
 
 You can optionally pass in a `passProps` property to your `initialRoute`. `NavigatorIOS` passes this in as props to the rendered component:
 
-```javascript
+```jsx
 initialRoute={{
   component: MyScene,
   title: 'My Initial Scene',
@@ -72,7 +72,7 @@ You can then access the props passed in via `{this.props.myProp}`.
 
 To trigger navigation functionality such as pushing or popping a view, you have access to a `navigator` object. The object is passed in as a prop to any component that is rendered by `NavigatorIOS`. You can then call the relevant methods to perform the navigation action you need:
 
-```javascript
+```jsx
 class MyView extends Component {
   _handleBackPress() {
     this.props.navigator.pop();
@@ -101,7 +101,7 @@ class MyView extends Component {
 
 You can also trigger navigator functionality from the `NavigatorIOS` component:
 
-```javascript
+```jsx
 class NavvyIOS extends Component {
   _handleNavigationRequest() {
     this.refs.nav.push({
@@ -135,7 +135,7 @@ The code above adds a `_handleNavigationRequest` private method that is invoked 
 
 Props passed to `NavigatorIOS` will set the default configuration for the navigation bar. Props passed as properties to a route object will set the configuration for that route's navigation bar, overriding any props passed to the `NavigatorIOS` component.
 
-```javascript
+```jsx
 _handleNavigationRequest() {
   this.refs.nav.push({
     //...
@@ -201,7 +201,7 @@ NavigatorIOS uses `route` objects to identify child views, their props, and navi
 
 ### `barStyle`
 
-The style of the navigation bar. Supported values are 'default', 'black'. Use 'black' instead of setting `barTintColor` to black. This produces a navigation bar with the native iOS style with higher translucency.
+The style of the navigation bar. Supported values are `default`, `black`. Use `black` instead of setting `barTintColor` to `black`. This produces a navigation bar with the native iOS style with higher translucency.
 
 | Type                     | Required |
 | ------------------------ | -------- |
@@ -221,7 +221,7 @@ The default background color of the navigation bar.
 
 ### `interactivePopGestureEnabled`
 
-Boolean value that indicates whether the interactive pop gesture is enabled. This is useful for enabling/disabling the back swipe navigation gesture.
+Boolean value that indicates whether the interactive `pop` gesture is enabled. This is useful for enabling/disabling the back swipe navigation gesture.
 
 If this prop is not provided, the default behavior is for the back swipe gesture to be enabled when the navigation bar is shown and disabled when the navigation bar is hidden. Once you've provided the `interactivePopGestureEnabled` prop, you can never restore the default behavior.
 
@@ -293,7 +293,7 @@ Boolean value that indicates whether the navigation bar is translucent by defaul
 
 ### `push()`
 
-```javascript
+```jsx
 push((route: object));
 ```
 
@@ -309,7 +309,7 @@ Navigate forward to a new route.
 
 ### `popN()`
 
-```javascript
+```jsx
 popN((n: number));
 ```
 
@@ -325,17 +325,17 @@ Go back N scenes at once. When N=1, behavior matches `pop()`.
 
 ### `pop()`
 
-```javascript
+```jsx
 pop();
 ```
 
-Pop back to the previous scene.
+Get the previous scene by its route
 
 ---
 
 ### `replaceAtIndex()`
 
-```javascript
+```jsx
 replaceAtIndex((route: object), (index: number));
 ```
 
@@ -352,7 +352,7 @@ Replace a route in the navigation stack.
 
 ### `replace()`
 
-```javascript
+```jsx
 replace((route: object));
 ```
 
@@ -368,7 +368,7 @@ Replace the route for the current scene and immediately load the view for the ne
 
 ### `replacePrevious()`
 
-```javascript
+```jsx
 replacePrevious((route: object));
 ```
 
@@ -384,7 +384,7 @@ Replace the route/view for the previous scene.
 
 ### `popToTop()`
 
-```javascript
+```jsx
 popToTop();
 ```
 
@@ -394,7 +394,7 @@ Go back to the topmost item in the navigation stack.
 
 ### `popToRoute()`
 
-```javascript
+```jsx
 popToRoute((route: object));
 ```
 
@@ -410,7 +410,7 @@ Go back to the item for a particular route object.
 
 ### `replacePreviousAndPop()`
 
-```javascript
+```jsx
 replacePreviousAndPop((route: object));
 ```
 
@@ -426,11 +426,11 @@ Replaces the previous route/view and transitions back to it.
 
 ### `resetTo()`
 
-```javascript
+```jsx
 resetTo((route: object));
 ```
 
-Replaces the top item and pop to it.
+Replaces the top item and `pop` to it.
 
 **Parameters:**
 

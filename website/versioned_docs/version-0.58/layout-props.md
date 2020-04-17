@@ -476,7 +476,7 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/min-width for more details.
 
 ### `overflow`
 
-`overflow` controls how children are measured and displayed. `overflow: hidden` causes views to be clipped while `overflow: scroll` causes views to be measured independently of their parents main axis. It works like `overflow` in CSS (default: visible). See https://developer.mozilla.org/en/docs/Web/CSS/overflow for more details. `overflow: visible` only works on iOS. On Android, all views will clip their children.
+`overflow` controls how children are measured and displayed. `overflow: hidden` causes views to be clipped while `overflow: scroll` causes views to be measured independently of their parents main axis. It works like `overflow` in CSS (default: visible). See https://developer.mozilla.org/en/docs/Web/CSS/overflow for more details.
 
 | Type                                | Required |
 | ----------------------------------- | -------- |
@@ -576,11 +576,11 @@ Setting `paddingVertical` is like setting both of `paddingTop` and `paddingBotto
 
 ### `position`
 
-`position` in React Native is similar to regular CSS, but everything is set to `relative` by default, so `absolute` positioning is always just relative to the parent.
+`position` in React Native is similar to regular CSS, but everything is set to `relative` by default, so `absolute` positioning is always only relative to the parent.
 
 If you want to position a child using specific numbers of logical pixels relative to its parent, set the child to have `absolute` position.
 
-If you want to position a child relative to something that is not its parent, just don't use styles for that. Use the component tree.
+If you want to position a child relative to something that is not its parent, don't use styles for that - use the component tree.
 
 See https://github.com/facebook/yoga for more details on how `position` differs between React Native and CSS.
 

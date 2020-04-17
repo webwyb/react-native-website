@@ -1,20 +1,11 @@
 ---
 id: progressviewios
-title: ProgressViewIOS
+title: 🚧 ProgressViewIOS
 ---
 
+> **Deprecated.** Use [@react-native-community/progress-view](https://github.com/react-native-community/react-native-progress-view) instead.
+
 使用`ProgressViewIOS`来在iOS上渲染一个UIProgressView。
-
-### 查看Props
-
-* [View props...](view.md#props)
-
-- [`progress`](progressviewios.md#progress)
-- [`progressImage`](progressviewios.md#progressimage)
-- [`progressTintColor`](progressviewios.md#progresstintcolor)
-- [`progressViewStyle`](progressviewios.md#progressviewstyle)
-- [`trackImage`](progressviewios.md#trackimage)
-- [`trackTintColor`](progressviewios.md#tracktintcolor)
 
 ---
 

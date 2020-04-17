@@ -3,76 +3,12 @@ id: integration-with-existing-apps
 title: Integration with Existing Apps
 ---
 
-<style>
-  .toggler li {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    padding: 10px;
-    margin: 0px 2px 0px 2px;
-    border: 1px solid #05A5D1;
-    border-bottom-color: transparent;
-    border-radius: 3px 3px 0px 0px;
-    color: #05A5D1;
-    background-color: transparent;
-    font-size: 0.99em;
-    cursor: pointer;
-  }
-  .toggler li:first-child {
-    margin-left: 0;
-  }
-  .toggler li:last-child {
-    margin-right: 0;
-  }
-  .toggler ul {
-    width: 100%;
-    display: inline-block;
-    list-style-type: none;
-    margin: 0;
-    border-bottom: 1px solid #05A5D1;
-    cursor: default;
-  }
-  @media screen and (max-width: 960px) {
-    .toggler li,
-    .toggler li:first-child,
-    .toggler li:last-child {
-      display: block;
-      border-bottom-color: #05A5D1;
-      border-radius: 3px;
-      margin: 2px 0px 2px 0px;
-    }
-    .toggler ul {
-      border-bottom: 0;
-    }
-  }
-  .toggler a {
-    display: inline-block;
-    padding: 10px 5px;
-    margin: 2px;
-    border: 1px solid #05A5D1;
-    border-radius: 3px;
-    text-decoration: none !important;
-  }
-  .display-language-objc .toggler .button-objc,
-  .display-language-swift .toggler .button-swift,
-  .display-language-android .toggler .button-android {
-    background-color: #05A5D1;
-    color: white;
-  }
-  block { display: none; }
-  .display-language-objc .objc,
-  .display-language-swift .swift,
-  .display-language-android .android {
-    display: block;
-  }
-</style>
-
 React Native is great when you are starting a new mobile app from scratch. However, it also works well for adding a single view or user flow to existing native applications. With a few steps, you can add new React Native based features, screens, views, etc.
 
 The specific steps are different depending on what platform you're targeting.
 
 <div class="toggler">
-  <ul role="tablist" >
+  <ul role="tablist" id="toggle-language" >
     <li id="objc" class="button-objc" aria-selected="false" role="tab" tabindex="0" aria-controls="objctab" onclick="displayTab('language', 'objc')">
       iOS (Objective-C)
     </li>
@@ -117,7 +53,7 @@ The keys to integrating React Native components into your Android application ar
 
 <block class="objc swift" />
 
-Follow the instructions for building apps with native code from the [Getting Started guide](getting-started.md) to configure your development environment for building React Native apps for iOS.
+Follow the React Native CLI Quickstart in the [environment setup guide](environment-setup) to configure your development environment for building React Native apps for iOS.
 
 ### 1. Set up directory structure
 
@@ -125,7 +61,7 @@ To ensure a smooth experience, create a new folder for your integrated React Nat
 
 <block class="android" />
 
-Follow the instructions for building apps with native code from the [Getting Started guide](getting-started.md) to configure your development environment for building React Native apps for Android.
+Follow the React Native CLI Quickstart in the [environment setup guide](environment-setup) to configure your development environment for building React Native apps for Android.
 
 ### 1. Set up directory structure
 
@@ -218,7 +154,11 @@ You can specify which `subspec`s your app will depend on in a `Podfile` file. Th
 $ pod init
 ```
 
-The `Podfile` will contain a boilerplate setup that you will tweak for your integration purposes. In the end, `Podfile` should look something similar to this:
+The `Podfile` will contain a boilerplate setup that you will tweak for your integration purposes.
+
+> The `Podfile` version changes depending on your version of `react-native`. Refer to https://react-native-community.github.io/upgrade-helper/ for the specific version of `Podfile` you should be using.
+
+Ultimately, your `Podfile` should look something similar to this:
 
 <block class="objc" />
 
@@ -228,20 +168,33 @@ target 'NumberTileGame' do
 
   # Your 'node_modules' directory is probably in the root of your project,
   # but if not, adjust the `:path` accordingly
-  pod 'React', :path => '../node_modules/react-native', :subspecs => [
-    'Core',
-    'CxxBridge', # Include this for RN >= 0.47
-    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
-    'RCTText',
-    'RCTNetwork',
-    'RCTWebSocket', # Needed for debugging
-    'RCTAnimation', # Needed for FlatList and animations running on native UI thread
-    # Add any other subspecs you want to use in your project
-  ]
-  # Explicitly include Yoga if you are using RN >= 0.42.0
-  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
+  pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
+  pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
+  pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
+  pod 'React', :path => '../node_modules/react-native/'
+  pod 'React-Core', :path => '../node_modules/react-native/'
+  pod 'React-CoreModules', :path => '../node_modules/react-native/React/CoreModules'
+  pod 'React-Core/DevSupport', :path => '../node_modules/react-native/'
+  pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
+  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
+  pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
+  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
+  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
+  pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+  pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
+  pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
 
-  # Third party deps podspec link
+  pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
+  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
+  pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
+  pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
+  pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
+  pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
+  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
@@ -273,7 +226,7 @@ target 'swift-2048' do
     # Add any other subspecs you want to use in your project
   ]
   # Explicitly include Yoga if you are using RN >= 0.42.0
-  pod "yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+  pod "Yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
 
   # Third party deps podspec link
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
@@ -324,13 +277,13 @@ The first bit of code we will write is the actual React Native code for the new 
 
 First, create an empty `index.js` file in the root of your React Native project.
 
-`index.js` is the starting point for React Native applications, and it is always required. It can be a small file that `require`s other file that are part of your React Native component or application, or it can contain all the code that is needed for it. In our case, we will just put everything in `index.js`.
+`index.js` is the starting point for React Native applications, and it is always required. It can be a small file that `require`s other file that are part of your React Native component or application, or it can contain all the code that is needed for it. In our case, we will put everything in `index.js`.
 
 ##### 2. Add your React Native code
 
-In your `index.js`, create your component. In our sample here, we will add simple `<Text>` component within a styled `<View>`
+In your `index.js`, create your component. In our sample here, we will add a `<Text>` component within a styled `<View>`
 
-```javascript
+```jsx
 import React from 'react';
 import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
@@ -380,7 +333,7 @@ AppRegistry.registerComponent('RNHighScores', () => RNHighScores);
 
 Now that your React Native component is created via `index.js`, you need to add that component to a new or existing `ViewController`. The easiest path to take is to optionally create an event path to your component and then add that component to an existing `ViewController`.
 
-We will tie our React Native component with a new native view in the `ViewController` that will actually host it called `RCTRootView` .
+We will tie our React Native component with a new native view in the `ViewController` that will actually contain it called `RCTRootView` .
 
 ##### 1. Create an Event Path
 
@@ -440,7 +393,7 @@ First `import` the `RCTRootView` header.
 
 First `import` the `React` library.
 
-```javascript
+```jsx
 import React
 ```
 
@@ -515,7 +468,7 @@ Apple has blocked implicit cleartext HTTP resource loading. So we need to add th
 
 ##### 2. Run the packager
 
-To run your app, you need to first start the development server. To do this, simply run the following command in the root directory of your React Native project:
+To run your app, you need to first start the development server. To do this, run the following command in the root directory of your React Native project:
 
 ```
 $ npm start
@@ -630,13 +583,13 @@ The first bit of code we will write is the actual React Native code for the new 
 
 First, create an empty `index.js` file in the root of your React Native project.
 
-`index.js` is the starting point for React Native applications, and it is always required. It can be a small file that `require`s other file that are part of your React Native component or application, or it can contain all the code that is needed for it. In our case, we will just put everything in `index.js`.
+`index.js` is the starting point for React Native applications, and it is always required. It can be a small file that `require`s other file that are part of your React Native component or application, or it can contain all the code that is needed for it. In our case, we will put everything in `index.js`.
 
 ##### 2. Add your React Native code
 
-In your `index.js`, create your component. In our sample here, we will add simple `<Text>` component within a styled `<View>`:
+In your `index.js`, create your component. In our sample here, we will add a `<Text>` component within a styled `<View>`:
 
-```javascript
+```jsx
 import React from 'react';
 import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
@@ -800,7 +753,7 @@ We also need to pass back button events to React Native:
 }
 ```
 
-This allows JavaScript to control what happens when the user presses the hardware back button (e.g. to implement navigation). When JavaScript doesn't handle the back button press, your `invokeDefaultOnBackPressed` method will be called. By default this simply finishes your `Activity`.
+This allows JavaScript to control what happens when the user presses the hardware back button (e.g. to implement navigation). When JavaScript doesn't handle the back button press, your `invokeDefaultOnBackPressed` method will be called. By default this finishes your `Activity`.
 
 Finally, we need to hook up the dev menu. By default, this is activated by (rage) shaking the device, but this is not very useful in emulators. So we make it show when you press the hardware menu button (use `Ctrl + M` if you're using Android Studio emulator):
 
@@ -823,7 +776,7 @@ You have now done all the basic steps to integrate React Native with your curren
 
 ##### 1. Run the packager
 
-To run your app, you need to first start the development server. To do this, simply run the following command in the root directory of your React Native project:
+To run your app, you need to first start the development server. To do this, run the following command in the root directory of your React Native project:
 
 ```
 $ yarn start
@@ -839,7 +792,7 @@ Once you reach your React-powered activity inside the app, it should load the Ja
 
 ### Creating a release build in Android Studio
 
-You can use Android Studio to create your release builds too! It’s as easy as creating release builds of your previously-existing native Android app. There’s just one additional step, which you’ll have to do before every release build. You need to execute the following to create a React Native bundle, which will be included with your native Android app:
+You can use Android Studio to create your release builds too! It’s as quick as creating release builds of your previously-existing native Android app. There’s one additional step, which you’ll have to do before every release build. You need to execute the following to create a React Native bundle, which will be included with your native Android app:
 
 ```
 $ react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/com/your-company-name/app-package-name/src/main/assets/index.android.bundle --assets-dest android/com/your-company-name/app-package-name/src/main/res/
@@ -847,131 +800,10 @@ $ react-native bundle --platform android --dev false --entry-file index.js --bun
 
 > Don’t forget to replace the paths with correct ones and create the assets folder if it doesn’t exist.
 
-Now just create a release build of your native app from within Android Studio as usual and you should be good to go!
+Now, create a release build of your native app from within Android Studio as usual and you should be good to go!
 
 <block class="objc swift android" />
 
 ### Now what?
 
-At this point you can continue developing your app as usual. Refer to our [debugging](debugging.md) and [deployment](running-on-device.md) docs to learn more about working with React Native.
-
-<script>
-  function displayTab(type, value) {
-    var container = document.getElementsByTagName('block')[0].parentNode;
-    container.className = 'display-' + type + '-' + value + ' ' +
-      container.className.replace(RegExp('display-' + type + '-[a-z]+ ?'), '');
-  }
-  function convertBlocks() {
-    // Convert <div>...<span><block /></span>...</div>
-    // Into <div>...<block />...</div>
-    var blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      var span = blocks[i].parentNode;
-      var container = span.parentNode;
-      container.insertBefore(block, span);
-      container.removeChild(span);
-    }
-    // Convert <div>...<block />content<block />...</div>
-    // Into <div>...<block>content</block><block />...</div>
-    blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      while (
-        block.nextSibling &&
-        block.nextSibling.tagName !== 'BLOCK'
-      ) {
-        block.appendChild(block.nextSibling);
-      }
-    }
-  }
-  function guessPlatformAndOS() {
-    if (!document.querySelector('block')) {
-      return;
-    }
-    // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
-    // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
-    var foundHash = false;
-    if (
-      window.location.hash !== '' &&
-      window.location.hash !== 'content'
-    ) {
-      // content is default
-      var hashLinks = document.querySelectorAll(
-        'a.hash-link'
-      );
-      for (
-        var i = 0;
-        i < hashLinks.length && !foundHash;
-        ++i
-      ) {
-        if (hashLinks[i].hash === window.location.hash) {
-          var parent = hashLinks[i].parentElement;
-          while (parent) {
-            if (parent.tagName === 'BLOCK') {
-              // Could be more than one target os and dev platform, but just choose some sort of order
-              // of priority here.
-              // Dev OS
-              if (parent.className.indexOf('mac') > -1) {
-                displayTab('os', 'mac');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('linux') > -1
-              ) {
-                displayTab('os', 'linux');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('windows') > -1
-              ) {
-                displayTab('os', 'windows');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Target Platform
-              if (parent.className.indexOf('ios') > -1) {
-                displayTab('platform', 'ios');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('android') > -1
-              ) {
-                displayTab('platform', 'android');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Guide
-              if (parent.className.indexOf('native') > -1) {
-                displayTab('guide', 'native');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('quickstart') > -1
-              ) {
-                displayTab('guide', 'quickstart');
-                foundHash = true;
-              } else {
-                break;
-              }
-              break;
-            }
-            parent = parent.parentElement;
-          }
-        }
-      }
-    }
-    // Do the default if there is no matching hash
-    if (!foundHash) {
-      var isMac = navigator.platform === 'MacIntel';
-      var isWindows = navigator.platform === 'Win32';
-      displayTab('platform', isMac ? 'ios' : 'android');
-      displayTab(
-        'os',
-        isMac ? 'mac' : isWindows ? 'windows' : 'linux'
-      );
-      displayTab('guide', 'quickstart');
-      displayTab('language', 'objc');
-    }
-  }
-  convertBlocks();
-  guessPlatformAndOS();
-</script>
+At this point you can continue developing your app as usual. Refer to our [debugging](debugging) and [deployment](running-on-device) docs to learn more about working with React Native.

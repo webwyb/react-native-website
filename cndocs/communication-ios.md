@@ -35,12 +35,11 @@ RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
 ```
 import React from 'react';
 import {
-  AppRegistry,
   View,
   Image
 } from 'react-native';
 
-class ImageBrowserApp extends React.Component {
+export default class ImageBrowserApp extends React.Component {
   renderImage(imgURI) {
     return (
       <Image source={{uri: imgURI}} />
@@ -55,7 +54,6 @@ class ImageBrowserApp extends React.Component {
   }
 }
 
-AppRegistry.registerComponent('ImageBrowserApp', () => ImageBrowserApp);
 ```
 
 `RCTRootView`同样提供了一个可读写的属性`appProperties`。在`appProperties`设置之后，React Native 应用将会根据新的属性重新渲染。当然，只有在新属性和之前的属性有区别时更新才会被触发。
@@ -201,4 +199,4 @@ typedef NS_ENUM(NSInteger, RCTRootViewSizeFlexibility) {
 
 动态改变根视图的弹性模式是可行的。改变根视图的弹性模式将会导致布局的重新计算，并且在重新量出内容尺寸时会调用`rootViewDidChangeIntrinsicSize`方法。
 
-> **_注意：_** React Native 布局是通过一个特殊的线程进行计算，而原生 UI 视图是通过主线程更新。这可能导致短暂的原生端和 React Native 端的不一致。这是一个已知的问题，我们的团队已经在着手解决不同源的 UI 同步更新。 **_注意：_** 除非根视图成为其他视图的子视图，否则 React Native 不会进行任何的布局计算。如果你想在还没有获得 React Native 视图的尺寸之前先隐藏视图，请将根视图添加为子视图并且在初始化的时候进行隐藏（使用`UIView`的`hidden`属性），然后在代理方法中改变它的可见性。
+> **_注意：_** React Native 布局是通过一个单独的线程进行计算，而原生 UI 视图是通过主线程更新。这可能导致短暂的原生端和 React Native 端的不一致。这是一个已知的问题，我们的团队已经在着手解决不同源的 UI 同步更新。 **_注意：_** 除非根视图成为其他视图的子视图，否则 React Native 不会进行任何的布局计算。如果你想在还没有获得 React Native 视图的尺寸之前先隐藏视图，请将根视图添加为子视图并且在初始化的时候进行隐藏（使用`UIView`的`hidden`属性），然后在代理方法中改变它的可见性。

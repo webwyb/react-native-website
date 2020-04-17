@@ -12,7 +12,7 @@ Background drawable of native feedback touchable can be customized with `backgro
 
 Example:
 
-```javascript
+```jsx
 renderButton: function() {
   return (
     <TouchableNativeFeedback
@@ -70,7 +70,7 @@ Check TouchableNativeFeedback.canUseNativeForeground() first, as this is only av
 
 ### `SelectableBackground()`
 
-```javascript
+```jsx
 static SelectableBackground()
 ```
 
@@ -80,7 +80,7 @@ Creates an object that represents android theme's default background for selecta
 
 ### `SelectableBackgroundBorderless()`
 
-```javascript
+```jsx
 static SelectableBackgroundBorderless()
 ```
 
@@ -90,7 +90,7 @@ Creates an object that represent android theme's default background for borderle
 
 ### `Ripple()`
 
-```javascript
+```jsx
 static Ripple(color: string, borderless: boolean)
 ```
 
@@ -98,15 +98,15 @@ Creates an object that represents ripple drawable with specified color (as a str
 
 **Parameters:**
 
-| Name       | Type    | Required | Description                                  |
-| ---------- | ------- | -------- | -------------------------------------------- |
-| color      | string  | Yes      | The ripple color                             |
-| borderless | boolean | Yes      | If the ripple can render outside it's bounds |
+| Name       | Type    | Required | Description                                 |
+| ---------- | ------- | -------- | ------------------------------------------- |
+| color      | string  | Yes      | The ripple color                            |
+| borderless | boolean | Yes      | If the ripple can render outside its bounds |
 
 ---
 
 ### `canUseNativeForeground()`
 
-```javascript
+```jsx
 static canUseNativeForeground()
 ```

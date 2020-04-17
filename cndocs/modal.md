@@ -5,7 +5,7 @@ title: Modal
 
 Modal 组件是一种简单的覆盖在其他视图之上显示内容的方式。
 
-```javascript
+```jsx
 import React, { Component } from "react";
 import { Modal, Text, TouchableHighlight, View } from "react-native";
 
@@ -56,20 +56,6 @@ class ModalExample extends Component {
   }
 }
 ```
-
-### 查看 Props
-
-* [`visible`](modal.md#visible)
-* [`supportedOrientations`](modal.md#supportedorientations)
-* [`onRequestClose`](modal.md#onrequestclose)
-* [`onShow`](modal.md#onshow)
-* [`transparent`](modal.md#transparent)
-* [`animationType`](modal.md#animationtype)
-* [`hardwareAccelerated`](modal.md#hardwareaccelerated)
-* [`onDismiss`](modal.md#ondismiss)
-* [`onOrientationChange`](modal.md#onorientationchange)
-* [`presentationStyle`](modal.md#presentationstyle)
-* [`animated`](modal.md#animated)
 
 ---
 
@@ -151,6 +137,16 @@ class ModalExample extends Component {
 | 类型 | 必填 | 平台    |
 | ---- | ---- | ------- |
 | bool | 否   | Android |
+
+---
+
+### `statusBarTranslucent`
+
+The `statusBarTranslucent` prop determines whether your modal should go under the system statusbar.
+
+| 类型 | 必填 | 平台 |
+| ---- | -------- | -------- |
+| bool | 否       | Android  |
 
 ---
 

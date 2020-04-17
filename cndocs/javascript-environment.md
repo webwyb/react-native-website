@@ -8,7 +8,7 @@ title: JavaScript环境
 在使用 React Native 时，你的 JavaScript 代码将会运行在两个不同的环境上：
 
 - 大多数情况下，React Native 使用的是[JavaScriptCore](http://trac.webkit.org/wiki/JavaScriptCore)，也就是 Safari 所使用的 JavaScript 引擎。但是在 iOS 上 JavaScriptCore 并没有使用即时编译技术（JIT），因为在 iOS 中应用无权拥有可写可执行的内存页（因此无法动态生成代码）。
-- 在使用 Chrome 调试时，所有的 JavaScript 代码都运行在 Chrome 中，并且通过 WebSocket 与原生代码通信。此时的运行环境是[V8 引擎](https://code.google.com/p/v8/)。
+- 在使用 Chrome 调试时，所有的 JavaScript 代码都运行在 Chrome 中，并且通过 WebSocket 与原生代码通信。此时的运行环境是[V8 引擎](https://v8.dev)。
 
 虽然两个环境非常类似，但开发者还是可能碰到一些不一致的地方。未来我们很可能会尝试一些其他的 JS 引擎，所以请尽量避免使用依赖于特定运行环境的代码。
 
@@ -21,7 +21,7 @@ title: JavaScript环境
 React Native 内置了[Babel 转换器](https://babeljs.io)。你可以查看[Babel 的文档](https://babeljs.io/docs/plugins/#transform-plugins)来了解有关它可以转换的语法的详情。
 
 在[metro-react-native-babel-preset](https://github.com/facebook/metro/tree/master/packages/metro-react-native-babel-preset)中可以看到目前 React Native 默认开启的语法转换特性。
-注：若想学习相关语法，译者推荐阮一峰老师的[《ECMAScript 6 入门》](http://es6.ruanyifeng.com/)以及论坛的[讨论帖](http://bbs.reactnative.cn/topic/15)。
+注：若想学习相关语法，译者推荐阮一峰老师的[《ECMAScript 6 入门》](http://es6.ruanyifeng.com/)。
 
 ES5
 
@@ -50,12 +50,15 @@ ES8
 
 Stage 3
 
-- [对象的扩展运算 Object Spread](https://github.com/sebmarkbage/ecmascript-rest-spread): `var extended = { ...obj, a: 10 };`
+- [对象的扩展运算 Object Spread](https://github.com/tc39/proposal-object-rest-spread): `var extended = { ...obj, a: 10 };`
+- [Optional Chaining](https://github.com/tc39/proposal-optional-chaining): `var name = obj.user?.name;`
 
 其他特性
 
 - [JSX](https://reactjs.org/docs/jsx-in-depth.html): `<View style={{color: 'red'}} />`
 - [Flow](http://flowtype.org/): `function foo(x: ?number): string {}`
+- [TypeScript](https://www.typescriptlang.org/): `function foo(x: number | undefined): string {};`
+- [Babel Template](https://babeljs.io/docs/en/babel-template): allows AST templating
 
 ## 接口兼容（Polyfills）
 
@@ -67,7 +70,6 @@ Stage 3
 - [CommonJS require](https://nodejs.org/docs/latest/api/modules.html)
 - [XMLHttpRequest, fetch](network.md#content)
 - [{set, clear}{Timeout, Interval, Immediate}, {request, cancel}AnimationFrame](timers.md#content)
-- [navigator.geolocation](geolocation.md#content)
 
 ES6
 

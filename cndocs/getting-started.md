@@ -3,93 +3,14 @@ id: getting-started
 title: 搭建开发环境
 ---
 
-<style>
-  .toggler {
-    margin-top: 2em;
-  }
-  .toggler li {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    padding: 10px;
-    margin: 0px 2px 0px 2px;
-    border: 1px solid #05A5D1;
-    border-bottom-color: transparent;
-    border-radius: 3px 3px 0px 0px;
-    color: #05A5D1;
-    background-color: transparent;
-    font-size: 0.99em;
-    cursor: pointer;
-  }
-  .toggler li:first-child {
-    margin-left: 0;
-  }
-  .toggler li:last-child {
-    margin-right: 0;
-  }
-  .toggler ul {
-    width: 100%;
-    display: inline-block;
-    list-style-type: none;
-    margin: 0;
-    border-bottom: 1px solid #05A5D1;
-    cursor: default;
-  }
-  @media screen and (max-width: 960px) {
-    .toggler li,
-    .toggler li:first-child,
-    .toggler li:last-child {
-      display: block;
-      border-bottom-color: #05A5D1;
-      border-radius: 3px;
-      margin: 2px 0px 2px 0px !important;
-    }
-    .toggler ul {
-      border-bottom: 0;
-    }
-  }
-  .toggler a {
-    display: inline-block;
-    padding: 10px 5px;
-    margin: 2px;
-    border: 1px solid #05A5D1;
-    border-radius: 3px;
-    text-decoration: none !important;
-  }
-  .display-guide-quickstart .toggler .button-quickstart,
-  .display-guide-native .toggler .button-native,
-  .display-os-mac .toggler .button-mac,
-  .display-os-linux .toggler .button-linux,
-  .display-os-windows .toggler .button-windows,
-  .display-platform-ios .toggler .button-ios,
-  .display-platform-android .toggler .button-android {
-    background-color: #05A5D1;
-    color: white;
-  }
-  block { display: none; }
-  .display-guide-quickstart.display-platform-ios.display-os-mac .quickstart.ios.mac,
-  .display-guide-quickstart.display-platform-ios.display-os-linux .quickstart.ios.linux,
-  .display-guide-quickstart.display-platform-ios.display-os-windows .quickstart.ios.windows,
-  .display-guide-quickstart.display-platform-android.display-os-mac .quickstart.android.mac,
-  .display-guide-quickstart.display-platform-android.display-os-linux .quickstart.android.linux,
-  .display-guide-quickstart.display-platform-android.display-os-windows .quickstart.android.windows,    .display-guide-native.display-platform-ios.display-os-mac .native.ios.mac,
-  .display-guide-native.display-platform-ios.display-os-linux .native.ios.linux,
-  .display-guide-native.display-platform-ios.display-os-windows .native.ios.windows,
-  .display-guide-native.display-platform-android.display-os-mac .native.android.mac,
-  .display-guide-native.display-platform-android.display-os-linux .native.android.linux,
-  .display-guide-native.display-platform-android.display-os-windows .native.android.windows {
-    display: block;
-  }
-</style>
-
 欢迎使用 React Native！这篇文档会帮助你搭建基本的 React Native 开发环境。如果你已经搭好了环境，那么可以尝试一下[编写 Hello World](tutorial.md)。
 
 <div class="toggler">
-  <ul role="tablist" >
+  <ul role="tablist" id="toggle-guide">
     <li id="native" class="button-native" aria-selected="false" role="tab" tabindex="0" aria-controls="nativetab" onclick="displayTab('guide', 'native')">
       完整原生环境
     </li>
-    <li id="quickstart" class="button-quickstart" aria-selected="false" role="tab" tabindex="-1" aria-controls="quickstarttab" onclick="displayTab('guide', 'quickstart')">
+    <li id="quickstart" class="button-quickstart" aria-selected="false" role="tab" tabindex="0" aria-controls="quickstarttab" onclick="displayTab('guide', 'quickstart')">
       简易沙盒环境
     </li>
   </ul>
@@ -99,28 +20,28 @@ title: 搭建开发环境
 
 译注：沙盒环境大量依赖于国外网络环境，也不能直接发布应用，只是用于学习、演示、试验等目的。不建议国内用户使用。
 
-[Create React Native App](https://github.com/react-community/create-react-native-app) is the easiest way to start building a new React Native application. It allows you to start a project without installing or configuring any tools to build native code - no Xcode or Android Studio installation required (see [Caveats](getting-started.md#caveats)).
+<strong>If you are new to mobile development</strong>, the easiest way to get started is with Expo CLI. Expo is a set of tools built around React Native and, while it has many [features](https://expo.io/features), the most relevant feature for us right now is that it can get you writing a React Native app within minutes. You will only need a recent version of Node.js and a phone or emulator. If you'd like to try out React Native directly in your web browser before installing any tools, you can try out [Snack](https://snack.expo.io/).
 
-Assuming that you have [Node](https://nodejs.org/en/download/) installed, you can use npm to install the `create-react-native-app` command line utility:
+Assuming that you have [Node 12 LTS](https://nodejs.org/en/download/) or greater installed, you can use npm to install the Expo CLI command line utility:
 
-```
-npm install -g create-react-native-app
+```sh
+npm install -g expo-cli
 ```
 
 Then run the following commands to create a new React Native project called "AwesomeProject":
 
-```
-create-react-native-app AwesomeProject
+```sh
+expo init AwesomeProject
 
 cd AwesomeProject
-npm start
+npm start # you can also use: expo start
 ```
 
-This will start a development server for you, and print a QR code in your terminal.
+This will start a development server for you.
 
 ## Running your React Native application
 
-Install the [Expo](https://expo.io) client app on your iOS or Android phone and connect to the same wireless network as your computer. Using the Expo app, scan the QR code from your terminal to open your project.
+Install the [Expo](https://expo.io) client app on your iOS or Android phone and connect to the same wireless network as your computer. On Android, use the Expo app to scan the QR code from your terminal to open your project. On iOS, use the built-in QR code scanner of the Camera app.
 
 ### Modifying your app
 
@@ -130,7 +51,7 @@ Now that you have successfully run the app, let's modify it. Open `App.js` in yo
 
 Congratulations! You've successfully run and modified your first React Native app.
 
-<center><img src="/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
 
 ## Now what?
 
@@ -154,24 +75,27 @@ If you know that you'll eventually need to include your own native code, Create 
 
 Create React Native App configures your project to use the most recent React Native version that is supported by the Expo client app. The Expo client app usually gains support for a given React Native version about a week after the React Native version is released as stable. You can check [this document](https://github.com/react-community/create-react-native-app/blob/master/VERSIONS.md) to find out what versions are supported.
 
-If you're integrating React Native into an existing project, you'll want to skip Create React Native App and go directly to setting up the native build environment. Select "Building Projects with Native Code" above for instructions on configuring a native build environment for React Native.
-
-<block class="native mac windows linux ios android" />
-
-<p>Follow these instructions if you need to build native code in your project. For example, if you are integrating React Native into an existing application, or if you "ejected" from <a href="getting-started.html" onclick="displayTab('guide', 'quickstart')">Create React Native App</a>, you'll need this section.</p>
+If you're integrating React Native into an existing project, you'll want to skip Create React Native App and go directly to setting up the native build environment. Select "Building Projects with Native Code" above for instructions on configuring a native build environment for React Nat <block class="native mac windows linux ios android" />
 
 根据你所使用的操作系统、针对的目标平台不同，具体步骤有所不同。如果想同时开发 iOS 和 Android 也没问题，你只需要先选一个平台开始，另一个平台的环境搭建只是稍有不同。
 
-如果`阅读完本文档`后还碰到很多环境搭建的问题，我们建议你还可以再看看由本站提供的`环境搭建视频教程`([macOS iOS](https://ke.qq.com/webcourse/index.html#course_id=197101&term_id=100233637&taid=1220865928921581&vid=a1417i5op7k)、[macOS Android](https://ke.qq.com/webcourse/index.html#course_id=197101&term_id=100233637&taid=1220870223888877&vid=z1417kmxask)、[windows Android](https://ke.qq.com/webcourse/index.html#course_id=197101&term_id=100233637&taid=1220874518856173&vid=d1417tgg1ez))、[windows 环境搭建文字教程](http://bbs.reactnative.cn/topic/10)、以及[常见问题](http://bbs.reactnative.cn/topic/130)。注意！视频教程或者其他网络上的博客和文章可能和本文档有所出入，请以最新版本的本文档所述为准！
+如果`阅读完本文档`后还碰到很多环境搭建的问题，我们建议你还可以再看看[求助讨论区](https://github.com/reactnativecn/react-native-website/issues)。注意！视频教程或者其他网络上的博客和文章可能和本文档有所出入，请以最新版本的本文档所述为准！
 
 <div class="toggler">
   <span>开发平台：</span>
-  <a href="javascript:void(0);" class="button-mac" onclick="displayTab('os', 'mac')">macOS</a>
-  <a href="javascript:void(0);" class="button-windows" onclick="displayTab('os', 'windows')">Windows</a>
-  <a href="javascript:void(0);" class="button-linux" onclick="displayTab('os', 'linux')">Linux</a>
+  <span role="tablist" id="toggle-os">
+    <button role="tab" class="button-mac" onclick="displayTab('os', 'mac')">macOS</button>
+    <button role="tab" class="button-linux" onclick="displayTab('os', 'linux')">Linux</a>
+    <button role="tab" class="button-windows" onclick="displayTab('os', 'windows')">Windows</button>
+  </span>
+</div>
+
+<div class="toggler">
   <span>目标平台：</span>
-  <a href="javascript:void(0);" class="button-ios" onclick="displayTab('platform', 'ios')">iOS</a>
-  <a href="javascript:void(0);" class="button-android" onclick="displayTab('platform', 'android')">Android</a>
+  <span role="tablist" id="toggle-platform">
+    <button role="tab" class="button-ios" onclick="displayTab('platform', 'ios')">iOS</a>
+    <button role="tab" class="button-android" onclick="displayTab('platform', 'android')">Android</a>
+  </span>
 </div>
 
 <block class="native linux windows ios" />
@@ -184,7 +108,7 @@ If you're integrating React Native into an existing project, you'll want to skip
 
 ## 安装依赖
 
-必须安装的依赖有：Node、Watchman 和 React Native 命令行工具以及 Xcode。
+必须安装的依赖有：Node、Watchman、Xcode和CocoaPods。
 
 虽然你可以使用`任何编辑器`来开发应用（编写 js 代码），但你仍然必须安装 Xcode 来获得编译 iOS 应用所需的工具和环境。
 
@@ -192,19 +116,19 @@ If you're integrating React Native into an existing project, you'll want to skip
 
 ## 安装依赖
 
-必须安装的依赖有：Node、Watchman 和 React Native 命令行工具以及 JDK 和 Android Studio。
+必须安装的依赖有：Node、Watchman、JDK 和 Android Studio。
 
 <block class="native linux android" />
 
 ## 安装依赖
 
-必须安装的依赖有：Node、React Native 命令行工具以及 JDK 和 Android Studio。
+必须安装的依赖有：Node、JDK 和 Android Studio。
 
 <block class="native windows android" />
 
 ## 安装依赖
 
-必须安装的依赖有：Node、React Native 命令行工具、Python2 以及 JDK 和 Android Studio。
+必须安装的依赖有：Node、Python2、JDK 和 Android Studio。
 
 <block class="native mac windows linux android" />
 
@@ -221,13 +145,16 @@ brew install node
 brew install watchman
 ```
 
-如果你已经安装了 Node，请检查其版本是否在 v10 以上。安装完 Node 后建议设置 npm 镜像以加速后面的过程（或使用科学上网工具）。
+如果你已经安装了 Node，请检查其版本是否在 v12 以上。安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
 
 > 注意：不要使用 cnpm！cnpm 安装的模块路径比较奇怪，packager 不能正常识别！
 
 ```
-npm config set registry https://registry.npm.taobao.org --global
-npm config set disturl https://npm.taobao.org/dist --global
+# 使用nrm工具切换淘宝源
+npx nrm use taobao
+
+# 如果之后需要切换回官方源可使用
+npx nrm use npm
 ```
 
 [Watchman](https://facebook.github.io/watchman)则是由 Facebook 提供的监视文件系统变更的工具。安装此工具可以提高开发时的性能（packager 可以快速捕捉文件的变化从而实现实时刷新）。
@@ -236,7 +163,7 @@ npm config set disturl https://npm.taobao.org/dist --global
 
 ### Node
 
-参照 Node 官方的[Linux 安装指南](https://nodejs.org/en/download/package-manager/)来安装 Node 10 以上的版本。
+参照 Node 官方的[Linux 安装指南](https://nodejs.org/en/download/package-manager/)来安装 Node 12 以上的版本。
 
 <block class='native windows android' />
 
@@ -244,49 +171,38 @@ npm config set disturl https://npm.taobao.org/dist --global
 
 我们建议直接使用搜索引擎搜索下载 Node 、Python2 和[Java SE Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-注意 Node 的版本必须大于等于 10，Python 的版本必须为 2.x（不支持 3.x），而 JDK 的版本必须是 1.8（目前不支持 1.9 及更高版本）。安装完 Node 后建议设置 npm 镜像以加速后面的过程（或使用科学上网工具）。
+注意 Node 的版本应大于等于 12，Python 的版本必须为 2.x（不支持 3.x），而 JDK 的版本必须是 1.8（目前不支持 1.9 及更高版本）。安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
 
 > 注意：不要使用 cnpm！cnpm 安装的模块路径比较奇怪，packager 不能正常识别！
 
 ```
-npm config set registry https://registry.npm.taobao.org --global
-npm config set disturl https://npm.taobao.org/dist --global
+# 使用nrm工具切换淘宝源
+npx nrm use taobao
+
+# 如果之后需要切换回官方源可使用
+npx nrm use npm
 ```
 
 <block class="native mac ios android" />
 
-### Yarn、React Native 的命令行工具（react-native-cli）
+### Yarn
 
-[Yarn](http://yarnpkg.com)是 Facebook 提供的替代 npm 的工具，可以加速 node 模块的下载。React Native 的命令行工具用于执行创建、初始化、更新项目、运行打包服务（packager）等任务。
-
-```
-npm install -g yarn react-native-cli
-```
-
-安装完 yarn 后同理也要设置镜像源：
+[Yarn](http://yarnpkg.com)是 Facebook 提供的替代 npm 的工具，可以加速 node 模块的下载。
 
 ```
-yarn config set registry https://registry.npm.taobao.org --global
-yarn config set disturl https://npm.taobao.org/dist --global
+npm install -g yarn
 ```
 
 安装完 yarn 之后就可以用 yarn 代替 npm 了，例如用`yarn`代替`npm install`命令，用`yarn add 某第三方库名`代替`npm install 某第三方库名`。
 
 <block class="native windows linux android" />
 
-### Yarn、React Native 的命令行工具（react-native-cli）
+### Yarn
 
-[Yarn](http://yarnpkg.com)是 Facebook 提供的替代 npm 的工具，可以加速 node 模块的下载。React Native 的命令行工具用于执行创建、初始化、更新项目、运行打包服务（packager）等任务。
-
-```
-npm install -g yarn react-native-cli
-```
-
-安装完 yarn 后同理也要设置镜像源：
+[Yarn](http://yarnpkg.com)是 Facebook 提供的替代 npm 的工具，可以加速 node 模块的下载。
 
 ```
-yarn config set registry https://registry.npm.taobao.org --global
-yarn config set disturl https://npm.taobao.org/dist --global
+npm install -g yarn
 ```
 
 安装完 yarn 之后就可以用 yarn 代替 npm 了，例如用`yarn`代替`npm install`命令，用`yarn add 某第三方库名`代替`npm install 某第三方库名`。
@@ -295,13 +211,34 @@ yarn config set disturl https://npm.taobao.org/dist --global
 
 ### Xcode
 
-React Native 目前需要[Xcode](https://developer.apple.com/xcode/downloads/) 9.4 或更高版本。你可以通过 App Store 或是到[Apple 开发者官网](https://developer.apple.com/xcode/downloads/)上下载。这一步骤会同时安装 Xcode IDE、Xcode 的命令行工具和 iOS 模拟器。
+React Native 目前需要[Xcode](https://developer.apple.com/xcode/downloads/) 10 或更高版本。你可以通过 App Store 或是到[Apple 开发者官网](https://developer.apple.com/xcode/downloads/)上下载。这一步骤会同时安装 Xcode IDE、Xcode 的命令行工具和 iOS 模拟器。
 
-#### Xcode 的命令行工具
+<h4>Xcode 的命令行工具</h4>
 
 启动 Xcode，并在`Xcode | Preferences | Locations`菜单中检查一下是否装有某个版本的`Command Line Tools`。Xcode 的命令行工具中包含一些必须的工具，比如`git`等。
 
 ![Xcode Command Line Tools](assets/GettingStartedXcodeCommandLineTools.png)
+
+<h4>CocoaPods</h4>
+
+[CocoaPods](https://cocoapods.org/)是用Ruby编写的包管理器。从0.60版本开始react native的iOS版本需要使用CocoaPods来管理依赖。你可以使用下面的命令来安装cocoapods。
+
+> 当然安装可能也不顺利，请尝试翻墙或寻找一些国内可用的镜像源。
+
+
+```sh
+sudo gem install cocoapods
+```
+
+或者可以使用brew来安装
+
+```sh
+brew install cocoapods
+```
+
+> 另外目前最新版本似乎不能在ruby2.6版本以下安装，意味着如果你使用的macOS版本低于10.15 (Catalina) 则无法直接安装。可以尝试安装较旧一些的版本。如`sudo gem install cocoapods -v 1.8.4`，参考issue链接 <https://github.com/CocoaPods/CocoaPods/issues/9568>
+
+要了解更多信息，可以访问[CocoaPods的官网](https://guides.cocoapods.org/using/getting-started.html)。
 
 <block class="native mac linux android" />
 
@@ -309,7 +246,7 @@ React Native 目前需要[Xcode](https://developer.apple.com/xcode/downloads/) 9
 
 React Native 需要 Java Development Kit [JDK] 1.8（暂不支持 1.9 及更高版本）。你可以在命令行中输入
 
-> `javac -version`来查看你当前安装的 JDK 版本。如果版本不合要求，则可以到 [官网](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)上下载。
+> `javac -version`（请注意是 java`c`，不是 java）来查看你当前安装的 JDK 版本。如果版本不合要求，则可以到 [官网](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)上下载。
 
 <block class="native mac linux windows android" />
 
@@ -429,14 +366,15 @@ c:\Users\你的用户名\AppData\Local\Android\Sdk
 
 你需要关闭现有的命令符提示窗口然后重新打开，这样新的环境变量才能生效。
 
-#### 4. 把 platform-tools 目录添加到环境变量 Path 中
+#### 4. 把一些工具目录添加到环境变量 Path 中
 
-打开`控制面板` -> `系统和安全` -> `系统` -> `高级系统设置` -> `高级` -> `环境变量`，选中**Path**变量，然后点击**编辑**。点击**新建**然后把 platform-tools 目录路径添加进去。
-
-此目录的默认路径为：
+打开`控制面板` -> `系统和安全` -> `系统` -> `高级系统设置` -> `高级` -> `环境变量`，选中**Path**变量，然后点击**编辑**。点击**新建**然后把这些工具目录路径添加进去：platform-tools、emulator、tools、tools/bin
 
 ```powershell
-c:\Users\你的用户名\AppData\Local\Android\Sdk\platform-tools
+%ANDROID_HOME%\platform-tools
+%ANDROID_HOME%\emulator
+%ANDROID_HOME%\tools
+%ANDROID_HOME%\tools\bin
 ```
 
  <block class="native linux android" />
@@ -453,15 +391,21 @@ c:\Users\你的用户名\AppData\Local\Android\Sdk\platform-tools
 
 ## 创建新项目
 
-使用 React Native 命令行工具来创建一个名为"AwesomeProject"的新项目：
+> 如果你之前全局安装过旧的`react-native-cli`命令行工具，请使用`npm uninstall -g react-native-cli`卸载掉它以避免一些冲突。
 
-**！！！注意！！！**：init 命令默认会创建最新的版本，而目前最新的 0.45 及以上版本需要下载 boost 等几个第三方库编译。这些库在国内即便翻墙也很难下载成功，导致很多人`无法运行iOS项目`！！！中文网在论坛中提供了这些库的[国内下载链接](http://bbs.reactnative.cn/topic/4301/)。如果你嫌麻烦，又没有对新版本的需求，那么可以暂时创建`0.44.3`的版本。
+使用 React Native 内建的命令行工具来创建一个名为"AwesomeProject"的新项目。这个命令行工具不需要安装，可以直接用 node 自带的`npx`命令来使用（注意 init 命令默认会创建最新的版本）：
 
+> **必须要看的注意事项一**：0.45 及以上版本需要依赖 boost 等几个很难下载成功的第三方库编译，请务必使用稳定的代理软件。
+
+> **必须要看的注意事项二**：0.60 及以上版本依赖 CocoaPods 安装。CocoaPods 的仓库在国内也很难访问。如果在 CocoaPods 的安装步骤卡很久，可以试一下[这个国内镜像](https://mirror.tuna.tsinghua.edu.cn/help/CocoaPods/)
+
+> **必须要看的注意事项三**：请`不要`单独使用常见的关键字作为项目名（如 class, native, new, package 等等）。请`不要`使用与核心模块同名的项目名（如 react, react-native 等）。请`不要`在目录、文件名中使用中文、空格等特殊符号。
+
+```sh
+npx react-native init AwesomeProject
 ```
-react-native init AwesomeProject
-```
 
-> 提示：你可以使用`--version`参数（注意是`两`个杠）创建指定版本的项目。例如`react-native init MyApp --version 0.44.3`。注意版本号必须精确到两个小数点。
+> 提示：你可以使用`--version`参数（注意是`两`个杠）创建指定版本的项目。例如`npx react-native init MyApp --version 0.44.3`。注意版本号必须精确到两个小数点。
 
 如果你是想把 React Native 集成到现有的原生项目中，则步骤完全不同，请参考[集成到现有原生应用](integration-with-existing-apps.md)。
 
@@ -469,13 +413,17 @@ react-native init AwesomeProject
 
 ## 创建新项目
 
-使用 React Native 命令行工具来创建一个名为"AwesomeProject"的新项目：
+> 如果你之前全局安装过旧的`react-native-cli`命令行工具，请使用`npm uninstall -g react-native-cli`卸载掉它以避免一些冲突。
 
-```
-react-native init AwesomeProject
+使用 React Native 内建的命令行工具来创建一个名为"AwesomeProject"的新项目。这个命令行工具不需要安装，可以直接用 node 自带的`npx`命令来使用（注意 init 命令默认会创建最新的版本）：
+
+> **注意**：请`不要`单独使用常见的关键字作为项目名（如 class, native, new, package 等等）。请`不要`使用与核心模块同名的项目名（如 react, react-native 等）。请`不要`在目录、文件名中使用中文、空格等特殊符号。
+
+```sh
+npx react-native init AwesomeProject
 ```
 
-> 提示：你可以使用`--version`参数（注意是`两`个杠）创建指定版本的项目。例如`react-native init MyApp --version 0.44.3`。注意版本号必须精确到两个小数点。
+> 提示：你可以使用`--version`参数（注意是`两`个杠）创建指定版本的项目。例如`npx react-native init MyApp --version 0.44.3`。注意版本号必须精确到两个小数点。
 
 **Windows 用户请注意，请不要在某些权限敏感的目录例如 System32 目录中 init 项目！会有各种权限限制导致不能运行！**
 
@@ -521,22 +469,24 @@ react-native init AwesomeProject
 
 ## 编译并运行 React Native 应用
 
-在你的项目目录中运行`react-native run-ios`：
+在你的项目目录中运行`yarn ios`或者`yarn react-native run-ios`：
 
 ```
 cd AwesomeProject
-react-native run-ios
+yarn ios
+# 或者
+yarn react-native run-ios
 ```
 
-> 提示：如果 run-ios 无法正常运行，请使用 Xcode 运行来查看具体错误（run-ios 的报错没有任何具体信息）。
+> 提示：如果此命令无法正常运行，请使用 Xcode 运行来查看具体错误（run-ios 的报错没有任何具体信息）。注意 0.60 版本之后的主项目文件是`.xcworkspace`，不是`.xcodeproj`！
 
 很快就应该能看到 iOS 模拟器自动启动并运行你的项目。
 
 ![AwesomeProject on iOS](assets/GettingStartediOSSuccess.png)
 
-`react-native run-ios`只是运行应用的方式之一。你也可以在 Xcode 或是[Nuclide](https://nuclide.io/)中直接运行应用。
+`yarn react-native run-ios`只是运行应用的方式之一。你也可以在 Xcode 中直接运行应用。注意 0.60 版本之后的主项目文件是`.xcworkspace`，不是`.xcodeproj`。
 
-> 如果你无法正常运行，先回头`仔细对照文档检查`，然后可以看看论坛的[求助专区](http://bbs.reactnative.cn/category/4)。
+> 如果你无法正常运行，先回头`仔细对照文档检查`，然后可以看看[讨论区](https://github.com/reactnativecn/react-native-website/issues)。
 
 ### 在真机上运行
 
@@ -546,14 +496,18 @@ react-native run-ios
 
 ## 编译并运行 React Native 应用
 
-确保你先运行了模拟器或者连接了真机，然后在你的项目目录中运行`react-native run-android`：
+确保你先运行了模拟器或者连接了真机，然后在你的项目目录中运行`yarn android`或者`yarn react-native run-android`：
 
 ```
 cd AwesomeProject
-react-native run-android
+yarn android
+# 或者
+yarn react-native run-android
 ```
 
 如果配置没有问题，你应该可以看到应用自动安装到设备上并开始运行。注意第一次运行时需要下载大量编译依赖，耗时可能数十分钟。此过程`严重依赖稳定的翻墙工具`，否则将频繁遭遇链接超时和断开，导致无法运行。
+
+也可以尝试阿里云提供的[maven 镜像](https://help.aliyun.com/document_detail/102512.html?spm=a2c40.aliyun_maven_repo.0.0.361865e90r2x4b)，将`android/build.gradle`中的`jcenter()`和`google()`分别替换为`maven { url 'https://maven.aliyun.com/repository/jcenter' }`和`maven { url 'https://maven.aliyun.com/repository/google' }`（注意有多处需要替换）。
 
 如果你的设备的 Android 版本低于 5.0，则可能在运行时看到红屏，请阅读[在设备上运行](running-on-device.md)这篇文档来按照步骤解决。
 
@@ -567,11 +521,11 @@ react-native run-android
 
 <block class="native mac windows linux android" />
 
-`react-native run-android`只是运行应用的方式之一。你也可以在 Android Studio 或是[Nuclide](https://nuclide.io/)中直接运行应用。
+`yarn react-native run-android`只是运行应用的方式之一。你也可以在 Android Studio 中直接运行应用。
 
 > 译注：建议在`run-android`成功后再尝试使用 Android Studio 启动。请不要轻易点击 Android Studio 中可能弹出的建议更新项目中某依赖项的建议，否则可能导致无法运行。
 
-> 如果你无法正常运行，遇到奇奇怪怪的红屏错误，先回头`仔细对照文档检查`，然后可以看看论坛的[求助专区](http://bbs.reactnative.cn/category/4)。不同时期不同版本可能会碰到不同的问题，我们会在论坛中及时解答更新。但请注意**_千万不要_**执行 bundle 命令，那样会导致代码完全无法刷新。
+> 如果你无法正常运行，遇到奇奇怪怪的红屏错误，先回头`仔细对照文档检查`，然后可以看看[问题讨论区](https://github.com/reactnativecn/react-native-website/issues)。不同时期不同版本可能会碰到不同的问题，我们会在论坛中及时解答更新。但请注意**_千万不要_**执行 bundle 命令，那样会导致代码完全无法刷新。
 
 <block class="native mac ios android" />
 
@@ -604,7 +558,7 @@ react-native run-android
 
 恭喜！你已经成功运行并修改了你的第一个 React Native 应用。
 
-<center><img src="/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
 
 <block class="native windows linux android" />
 
@@ -612,15 +566,13 @@ react-native run-android
 
 恭喜！你已经成功运行并修改了你的第一个 React Native 应用。
 
-<center><img src="/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
+<center><img src="https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@gh-pages/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
 
 <block class="native mac ios" />
 
 ## 接下来？
 
-- 试着在开发者菜单中打开[Live Reload](debugging.md#自动刷新)，现在你只要一保存代码应用就会自动完整刷新。
-
-- 如果你想把 React Native 集成到现有的原生项目中，则请参考[集成到现有原生应用](integration-with-existing-apps.md)。
+如果你想把 React Native 集成到现有的原生项目中，则请参考[集成到现有原生应用](integration-with-existing-apps.md)。
 
 如果你想从头开始学习 React Native 开发，可以从尝试[编写 Hello World](tutorial.md)开始。
 
@@ -628,129 +580,6 @@ react-native run-android
 
 ## 接下来？
 
-- 试着在开发者菜单中打开[Live Reload](debugging.md#自动刷新)，现在你只要一保存代码应用就会自动完整刷新。
-
-- 如果你想把 React Native 集成到现有的原生项目中，则请参考[集成到现有原生应用](integration-with-existing-apps.md)。
+如果你想把 React Native 集成到现有的原生项目中，则请参考[集成到现有原生应用](integration-with-existing-apps.md)。
 
 如果你想从头开始学习 React Native 开发，可以从尝试[编写 Hello World](tutorial.md)开始。
-
-<script>
-  function displayTab(type, value) {
-    var container = document.getElementsByTagName('block')[0].parentNode;
-    container.className = 'display-' + type + '-' + value + ' ' +
-      container.className.replace(RegExp('display-' + type + '-[a-z]+ ?'), '');
-  }
-  function convertBlocks() {
-    // Convert <div>...<span><block /></span>...</div>
-    // Into <div>...<block />...</div>
-    var blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      var span = blocks[i].parentNode;
-      var container = span.parentNode;
-      container.insertBefore(block, span);
-      container.removeChild(span);
-    }
-    // Convert <div>...<block />content<block />...</div>
-    // Into <div>...<block>content</block><block />...</div>
-    blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      while (
-        block.nextSibling &&
-        block.nextSibling.tagName !== 'BLOCK'
-      ) {
-        block.appendChild(block.nextSibling);
-      }
-    }
-  }
-  function guessPlatformAndOS() {
-    if (!document.querySelector('block')) {
-      return;
-    }
-    // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
-    // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
-    var foundHash = false;
-    if (
-      window.location.hash !== '' &&
-      window.location.hash !== 'content'
-    ) {
-      // content is default
-      var hashLinks = document.querySelectorAll(
-        'a.hash-link'
-      );
-      for (
-        var i = 0;
-        i < hashLinks.length && !foundHash;
-        ++i
-      ) {
-        if (hashLinks[i].hash === window.location.hash) {
-          var parent = hashLinks[i].parentElement;
-          while (parent) {
-            if (parent.tagName === 'BLOCK') {
-              // Could be more than one target os and dev platform, but just choose some sort of order
-              // of priority here.
-              // Dev OS
-              if (parent.className.indexOf('mac') > -1) {
-                displayTab('os', 'mac');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('linux') > -1
-              ) {
-                displayTab('os', 'linux');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('windows') > -1
-              ) {
-                displayTab('os', 'windows');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Target Platform
-              if (parent.className.indexOf('ios') > -1) {
-                displayTab('platform', 'ios');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('android') > -1
-              ) {
-                displayTab('platform', 'android');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Guide
-              if (parent.className.indexOf('native') > -1) {
-                displayTab('guide', 'native');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('quickstart') > -1
-              ) {
-                displayTab('guide', 'quickstart');
-                foundHash = true;
-              } else {
-                break;
-              }
-              break;
-            }
-            parent = parent.parentElement;
-          }
-        }
-      }
-    }
-    // Do the default if there is no matching hash
-    if (!foundHash) {
-      var isMac = navigator.platform === 'MacIntel';
-      var isWindows = navigator.platform === 'Win32';
-      displayTab('platform', isMac ? 'ios' : 'android');
-      displayTab(
-        'os',
-        isMac ? 'mac' : isWindows ? 'windows' : 'linux'
-      );
-      displayTab('guide', 'native');
-      displayTab('language', 'objc');
-    }
-  }
-  convertBlocks();
-  guessPlatformAndOS();
-</script>

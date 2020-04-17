@@ -3,86 +3,16 @@ id: running-on-device
 title: 在设备上运行
 ---
 
-<style>
-  .toggler li {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    padding: 10px;
-    margin: 0px 2px 0px 2px;
-    border: 1px solid #05A5D1;
-    border-bottom-color: transparent;
-    border-radius: 3px 3px 0px 0px;
-    color: #05A5D1;
-    background-color: transparent;
-    font-size: 0.99em;
-    cursor: pointer;
-  }
-  .toggler li:first-child {
-    margin-left: 0;
-  }
-  .toggler li:last-child {
-    margin-right: 0;
-  }
-  .toggler ul {
-    width: 100%;
-    display: inline-block;
-    list-style-type: none;
-    margin: 0;
-    border-bottom: 1px solid #05A5D1;
-    cursor: default;
-  }
-  @media screen and (max-width: 960px) {
-    .toggler li,
-    .toggler li:first-child,
-    .toggler li:last-child {
-      display: block;
-      border-bottom-color: #05A5D1;
-      border-radius: 3px;
-      margin: 2px 0px 2px 0px;
-    }
-    .toggler ul {
-      border-bottom: 0;
-    }
-  }
-  .toggler a {
-    display: inline-block;
-    padding: 10px 5px;
-    margin: 2px;
-    border: 1px solid #05A5D1;
-    border-radius: 3px;
-    text-decoration: none !important;
-  }
-  .display-os-mac .toggler .button-mac,
-  .display-os-linux .toggler .button-linux,
-  .display-os-windows .toggler .button-windows,
-  .display-platform-ios .toggler .button-ios,
-  .display-platform-android .toggler .button-android {
-    background-color: #05A5D1;
-    color: white;
-  }
-  block { display: none; }
-  .display-platform-ios.display-os-mac .ios.mac,
-  .display-platform-ios.display-os-linux .ios.linux,
-  .display-platform-ios.display-os-windows .ios.windows,
-  .display-platform-android.display-os-mac .android.mac,
-  .display-platform-android.display-os-linux .android.linux,
-  .display-platform-android.display-os-windows .android.windows {
-    display: block;
-  }
-</style>
-
 在真机上测试app后再将其发布给用户总是好的。本文档将指导你通过必须的步骤在设备上运行React Native app，为生产做准备。
 
 如果使用Create React Native App来建立工程，可以通过Expo App扫描QR代码在设备上预览app。为了在设备上编译和运行app，需要逐出并从[搭建开发环境](getting-started.md)安装原生代码依赖。
 
 <div class="toggler">
-
-  <ul role="tablist" >
+   <ul role="tablist" id="toggle-platform">
     <li id="ios" class="button-ios" aria-selected="false" role="tab" tabindex="0" aria-controls="iostab" onclick="displayTab('platform', 'ios')">
       iOS
     </li>
-    <li id="android" class="button-android" aria-selected="false" role="tab" tabindex="-1" aria-controls="androidtab" onclick="displayTab('platform', 'android')">
+    <li id="android" class="button-android" aria-selected="false" role="tab" tabindex="0" aria-controls="androidtab" onclick="displayTab('platform', 'android')">
       Android
     </li>
   </ul>
@@ -99,10 +29,12 @@ title: 在设备上运行
 <block class="linux windows mac ios android" />
 
 <div class="toggler">
-<span>开发平台：</span>
-<a href="javascript:void(0);" class="button-mac" onclick="displayTab('os', 'mac')">macOS</a>
-<a href="javascript:void(0);" class="button-linux" onclick="displayTab('os', 'linux')">Linux</a>
-<a href="javascript:void(0);" class="button-windows" onclick="displayTab('os', 'windows')">Windows</a>
+  <span>开发平台：</span>
+  <span role="tablist" id="toggle-os">
+    <button role="tab" class="button-mac" onclick="displayTab('os', 'mac')">macOS</button>
+    <button role="tab" class="button-linux" onclick="displayTab('os', 'linux')">Linux</a>
+    <button role="tab" class="button-windows" onclick="displayTab('os', 'windows')">Windows</button>
+  </span>
 </div>
 
 <block class="linux windows ios" />
@@ -284,7 +216,7 @@ To still use xip.io behind your router:
 
 在启用开发服务器（官方名称 metro，但我们更常称之为 Packager）的情况下，你可以快速的迭代修改应用，然后在设备上立即查看结果。按照下面描述的任意一种方法来使你的设备可以访问到运行在电脑上的开发服务器。
 
-> 译注：默认情况下模拟器可以自动探测宿主机 ip 并连接，只有 Android 5.0 以下版本的手机需要按下文说明来手动操作。但某些情形下可能也无法正常连接，请注意去[论坛的求助专区](http://bbs.reactnative.cn/category/4/)查看是否有人遭遇同类型的问题（不同时期不同版本可能是不同的问题）。有些文章会提到`react-native bundle`命令，这个命令会把 js 文件打包内置到应用中，从而不需要连接 Packager，但这`并没有解决问题`。我们在开发中必须使用到 Packager，否则无法刷新代码。
+> 译注：默认情况下模拟器可以自动探测宿主机 ip 并连接，只有 Android 5.0 以下版本的手机需要按下文说明来手动操作。但某些情形下可能也无法正常连接，请注意去[讨论区](https://github.com/reactnativecn/react-native-website/issues)查看是否有人遭遇同类型的问题（不同时期不同版本可能是不同的问题）。有些文章会提到`react-native bundle`命令，这个命令会把 js 文件打包内置到应用中，从而不需要连接 Packager，但这`并没有解决问题`。我们在开发中必须使用到 Packager，否则无法刷新代码。
 
 ### (Android 5.0 及以上)使用 adb reverse 命令
 
@@ -382,124 +314,3 @@ The static bundle is built every time you target a physical device, even in Debu
 ## Building your app for production
 
 You have built a great app using React Native, and you are now itching to release it in the Play Store. The process is the same as any other native Android app, with some additional considerations to take into account. Follow the guide for [generating a signed APK](signed-apk-android.md) to learn more.
-
-<script>
-  function displayTab(type, value) {
-    var container = document.getElementsByTagName('block')[0].parentNode;
-    container.className = 'display-' + type + '-' + value + ' ' +
-      container.className.replace(RegExp('display-' + type + '-[a-z]+ ?'), '');
-  }
-  function convertBlocks() {
-    // Convert <div>...<span><block /></span>...</div>
-    // Into <div>...<block />...</div>
-    var blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      var span = blocks[i].parentNode;
-      var container = span.parentNode;
-      container.insertBefore(block, span);
-      container.removeChild(span);
-    }
-    // Convert <div>...<block />content<block />...</div>
-    // Into <div>...<block>content</block><block />...</div>
-    blocks = document.querySelectorAll('block');
-    for (var i = 0; i < blocks.length; ++i) {
-      var block = blocks[i];
-      while (
-        block.nextSibling &&
-        block.nextSibling.tagName !== 'BLOCK'
-      ) {
-        block.appendChild(block.nextSibling);
-      }
-    }
-  }
-  function guessPlatformAndOS() {
-    if (!document.querySelector('block')) {
-      return;
-    }
-    // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
-    // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
-    var foundHash = false;
-    if (
-      window.location.hash !== '' &&
-      window.location.hash !== 'content'
-    ) {
-      // content is default
-      var hashLinks = document.querySelectorAll(
-        'a.hash-link'
-      );
-      for (
-        var i = 0;
-        i < hashLinks.length && !foundHash;
-        ++i
-      ) {
-        if (hashLinks[i].hash === window.location.hash) {
-          var parent = hashLinks[i].parentElement;
-          while (parent) {
-            if (parent.tagName === 'BLOCK') {
-              // Could be more than one target os and dev platform, but just choose some sort of order
-              // of priority here.
-              // Dev OS
-              if (parent.className.indexOf('mac') > -1) {
-                displayTab('os', 'mac');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('linux') > -1
-              ) {
-                displayTab('os', 'linux');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('windows') > -1
-              ) {
-                displayTab('os', 'windows');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Target Platform
-              if (parent.className.indexOf('ios') > -1) {
-                displayTab('platform', 'ios');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('android') > -1
-              ) {
-                displayTab('platform', 'android');
-                foundHash = true;
-              } else {
-                break;
-              }
-              // Guide
-              if (parent.className.indexOf('native') > -1) {
-                displayTab('guide', 'native');
-                foundHash = true;
-              } else if (
-                parent.className.indexOf('quickstart') > -1
-              ) {
-                displayTab('guide', 'quickstart');
-                foundHash = true;
-              } else {
-                break;
-              }
-              break;
-            }
-            parent = parent.parentElement;
-          }
-        }
-      }
-    }
-    // Do the default if there is no matching hash
-    if (!foundHash) {
-      var isMac = navigator.platform === 'MacIntel';
-      var isWindows = navigator.platform === 'Win32';
-      displayTab('platform', isMac ? 'ios' : 'android');
-      displayTab(
-        'os',
-        isMac ? 'mac' : isWindows ? 'windows' : 'linux'
-      );
-      displayTab('guide', 'quickstart');
-      displayTab('language', 'objc');
-    }
-  }
-  convertBlocks();
-  guessPlatformAndOS();
-</script>

@@ -29,14 +29,13 @@ renderButton: function() {
 ```ReactNativeWebPlayer
 import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
   TouchableHighlight,
   Text,
   View,
 } from 'react-native'
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = { count: 0 }
@@ -86,27 +85,15 @@ const styles = StyleSheet.create({
     color: '#FF00FF'
   }
 })
-
-AppRegistry.registerComponent('App', () => App)
 ```
-
-### 查看Props
-
-* [TouchableWithoutFeedback props...](touchablewithoutfeedback.md#props)
-
-- [`activeOpacity`](touchablehighlight.md#activeopacity)
-- [`onHideUnderlay`](touchablehighlight.md#onhideunderlay)
-- [`onShowUnderlay`](touchablehighlight.md#onshowunderlay)
-- [`style`](touchablehighlight.md#style)
-- [`underlayColor`](touchablehighlight.md#underlaycolor)
-- [`hasTVPreferredFocus`](touchablehighlight.md#hastvpreferredfocus)
-- [`tvParallaxProperties`](touchablehighlight.md#tvparallaxproperties)
 
 ---
 
 # 文档
 
 ## Props
+
+Inherits [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props).
 
 ### `activeOpacity`
 
